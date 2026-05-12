@@ -4,7 +4,9 @@ import { io } from "socket.io-client";
 import pumpImage from "./assets/pumped.png";
 import "./App.css";
 
-const socket = io("http://localhost:5000");
+const socket = io(
+  "https://railway-dashboard-rdii.onrender.com"
+);
 
 export default function App() {
   const [commandPopup,setCommandPopup] =
@@ -91,8 +93,8 @@ useState("");
 
       const res =
         await axios.get(
-          "http://localhost:5000/api/dashboard"
-        );
+  "https://railway-dashboard-rdii.onrender.com/api/dashboard"
+);
 
       setDashboard(res.data);
 
@@ -168,10 +170,8 @@ async (pumpName, action) => {
     },5000);
 
     await axios.post(
-
-      `http://localhost:5000/api/${pumpName}/${action}`
-
-    );
+  `https://railway-dashboard-rdii.onrender.com/api/${pumpName}/${action}`
+);
 
   }
 
