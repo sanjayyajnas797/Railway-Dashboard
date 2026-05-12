@@ -1024,11 +1024,11 @@ RESPONSIVE
 
     margin-left:0;
 
-    margin-top:74px;
+    margin-top:82px;
 
     width:100%;
 
-    padding:8px 8px 85px;
+    padding:10px 10px 85px;
   }
 
   /* HEADER */
@@ -1041,16 +1041,17 @@ RESPONSIVE
     left:0;
     right:0;
 
-    height:74px;
+    height:82px;
 
-    padding:10px;
+    padding:12px 14px;
 
     z-index:999999;
 
     display:flex;
     align-items:center;
+    justify-content:space-between;
 
-    gap:8px;
+    gap:12px;
 
     background:
     linear-gradient(
@@ -1061,6 +1062,9 @@ RESPONSIVE
 
     border-bottom:
     1px solid rgba(255,255,255,.05);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.45);
   }
 
   .mobile-menu{
@@ -1072,10 +1076,10 @@ RESPONSIVE
 
   .mobile-logo{
 
-    width:34px;
-    height:34px;
+    width:38px;
+    height:38px;
 
-    border-radius:10px;
+    border-radius:12px;
 
     display:flex;
     justify-content:center;
@@ -1087,35 +1091,64 @@ RESPONSIVE
       #00d9ff,
       #0066ff
     );
+
+    box-shadow:
+    0 0 18px rgba(0,217,255,.45);
+
+    flex-shrink:0;
   }
 
   .mobile-header-content{
+
     flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+
+    margin-left:2px;
   }
 
   .top-header h1{
 
-    font-size:10px;
+    font-size:11px;
 
-    line-height:1.2;
+    line-height:1.25;
+
+    max-width:170px;
+
+    letter-spacing:.6px;
   }
 
   .top-header p{
 
-    font-size:6px;
+    font-size:7px;
 
-    margin-top:2px;
+    margin-top:3px;
+
+    color:#7ea8d7;
   }
 
   .header-right{
-    gap:5px;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    margin-left:auto;
   }
 
   .live-box{
 
-    padding:6px 8px;
+    padding:7px 12px;
 
-    font-size:6px;
+    font-size:7px;
+
+    border-radius:20px;
+
+    white-space:nowrap;
   }
 
   .time-box{
@@ -1133,16 +1166,26 @@ RESPONSIVE
 
     gap:6px;
 
-    margin-bottom:10px;
+    margin-bottom:12px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+  }
+
+  .info-grid::-webkit-scrollbar{
+    display:none;
   }
 
   .info-card{
 
-    min-height:68px;
+    min-height:78px;
+
+    min-width:78px;
 
     padding:8px;
 
-    border-radius:12px;
+    border-radius:14px;
   }
 
   .info-card span{
@@ -1151,7 +1194,7 @@ RESPONSIVE
 
   .info-card h2{
 
-    font-size:10px;
+    font-size:11px;
 
     margin-top:8px;
   }
@@ -1164,12 +1207,12 @@ RESPONSIVE
     justify-content:space-between;
     align-items:center;
 
-    margin-bottom:8px;
+    margin-bottom:10px;
   }
 
   .section-title{
 
-    font-size:12px;
+    font-size:13px;
 
     margin-bottom:0;
   }
@@ -1187,6 +1230,12 @@ RESPONSIVE
     font-weight:700;
   }
 
+  /* TOP GRID */
+
+  .top-grid{
+    display:block;
+  }
+
   /* PUMP */
 
   .pump-grid{
@@ -1195,9 +1244,15 @@ RESPONSIVE
 
     overflow-x:auto;
 
-    gap:10px;
+    gap:12px;
+
+    padding-bottom:6px;
 
     scroll-snap-type:x mandatory;
+
+    -webkit-overflow-scrolling:touch;
+
+    scrollbar-width:none;
   }
 
   .pump-grid::-webkit-scrollbar{
@@ -1206,13 +1261,17 @@ RESPONSIVE
 
   .railway-pump-card{
 
-    min-width:240px;
+    min-width:220px;
+
+    max-width:220px;
 
     scroll-snap-align:start;
 
     padding:10px;
 
     border-radius:18px;
+
+    flex-shrink:0;
   }
 
   .pump-title{
@@ -1294,7 +1353,7 @@ RESPONSIVE
 
   .pump-info-card{
 
-    min-height:55px;
+    min-height:58px;
 
     padding:7px;
   }
@@ -1314,9 +1373,11 @@ RESPONSIVE
   .start-btn,
   .stop-btn{
 
-    height:32px;
+    height:34px;
 
     font-size:10px;
+
+    border-radius:10px;
   }
 
   /* DIGITAL */
@@ -1331,9 +1392,11 @@ RESPONSIVE
 
   .digital-box{
 
-    min-height:84px;
+    min-height:88px;
 
     padding:9px;
+
+    border-radius:14px;
   }
 
   .digital-box span{
@@ -1360,9 +1423,11 @@ RESPONSIVE
 
   .register-box{
 
-    min-height:68px;
+    min-height:70px;
 
     padding:8px;
+
+    border-radius:14px;
   }
 
   .register-box span{
@@ -1404,6 +1469,8 @@ RESPONSIVE
     align-items:center;
 
     z-index:999999;
+
+    backdrop-filter:blur(14px);
   }
 
   .bottom-nav-item{
