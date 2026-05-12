@@ -1525,10 +1525,6 @@ MQTT + TELEMETRY EXTRA UI
 
 
 
-/* =========================================
-ULTRA PROFESSIONAL MOBILE UI
-========================================= */
-
 @media screen and (max-width:768px){
 
   html,
@@ -1537,29 +1533,27 @@ ULTRA PROFESSIONAL MOBILE UI
     overflow-x:hidden;
   }
 
-  body{
-    padding:0;
-    margin:0;
-  }
-
   .app-layout{
     flex-direction:column;
-    width:100%;
   }
 
-  /* SIDEBAR TOP NAV */
+  /* ================= NAVBAR ================= */
 
   .sidebar{
+
+    width:100%;
 
     position:sticky;
     top:0;
 
-    width:100%;
-    height:auto;
+    z-index:9999;
 
     padding:10px;
 
-    z-index:9999;
+    border-right:none;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.06);
 
     background:
     linear-gradient(
@@ -1567,11 +1561,6 @@ ULTRA PROFESSIONAL MOBILE UI
       rgba(2,12,26,.98),
       rgba(3,20,40,.98)
     );
-
-    border-right:none;
-
-    border-bottom:
-    1px solid rgba(255,255,255,.06);
   }
 
   .logo-box{
@@ -1596,29 +1585,27 @@ ULTRA PROFESSIONAL MOBILE UI
 
   .menu-item{
 
-    min-width:74px;
+    min-width:78px;
 
-    padding:10px 6px;
+    flex:none;
 
     font-size:9px;
 
-    border-radius:12px;
+    padding:10px 8px;
 
-    flex:none;
+    border-radius:12px;
   }
 
-  /* MAIN */
+  /* ================= MAIN ================= */
 
   .main-container{
 
     width:100%;
 
     padding:10px;
-
-    overflow:hidden;
   }
 
-  /* HEADER */
+  /* ================= HEADER ================= */
 
   .top-header{
 
@@ -1635,11 +1622,9 @@ ULTRA PROFESSIONAL MOBILE UI
 
   .top-header h1{
 
-    font-size:13px;
+    font-size:15px;
 
-    line-height:1.5;
-
-    letter-spacing:.5px;
+    line-height:1.4;
   }
 
   .top-header p{
@@ -1654,73 +1639,77 @@ ULTRA PROFESSIONAL MOBILE UI
     justify-content:space-between;
   }
 
-  .live-box{
-    font-size:10px;
-    padding:8px 12px;
+  /* ================= INFO GRID ================= */
+
+  .info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
   }
-
-  .time-box{
-    font-size:10px;
-  }
-
-  /* GRID */
-
-  .info-grid,
-  .top-grid,
-  .pump-grid,
-  .digital-grid,
-  .register-grid,
-  .pump-info-grid{
-
-    grid-template-columns:1fr !important;
-  }
-
-  /* CARD */
-
-  .section-card,
-  .railway-pump-card,
-  .info-card,
-  .digital-box,
-  .register-box{
-
-    border-radius:18px;
-  }
-
-  .section-card{
-    padding:14px;
-  }
-
-  /* INFO */
 
   .info-card{
 
-    min-height:88px;
+    min-height:90px;
 
     padding:14px;
   }
 
   .info-card h2{
-    font-size:22px;
+
+    font-size:20px;
   }
 
-  /* PUMP */
+  .info-card span{
+
+    font-size:9px;
+  }
+
+  /* ================= TOP GRID ================= */
+
+  .top-grid{
+
+    grid-template-columns:1fr;
+
+    gap:14px;
+  }
+
+  /* ================= PUMP ================= */
+
+  .pump-grid{
+
+    grid-template-columns:1fr;
+
+    gap:14px;
+  }
+
+  .railway-pump-card{
+
+    padding:14px;
+
+    border-radius:20px;
+  }
 
   .pump-title{
+
     font-size:18px;
   }
 
   .rpm-box h3{
+
     font-size:18px;
   }
 
-  /* PIPELINE */
+  /* PIPE */
 
   .pipeline-layout{
 
-    gap:6px;
+    gap:8px;
 
-    margin-top:12px;
-    margin-bottom:12px;
+    margin-top:10px;
+    margin-bottom:14px;
   }
 
   .solar-source{
@@ -1735,38 +1724,38 @@ ULTRA PROFESSIONAL MOBILE UI
 
   .pipe-line{
 
-    width:40px;
+    width:36px;
     height:8px;
 
     margin:0;
   }
 
-  /* PUMP */
+  /* PUMP BODY */
 
   .ultra-pump{
 
-    width:72px;
-    height:140px;
+    width:74px;
+    height:150px;
 
     margin:0;
   }
 
   .ultra-motor-head{
 
-    width:36px;
-    height:48px;
+    width:38px;
+    height:50px;
   }
 
   .ultra-body{
 
-    width:42px;
-    height:84px;
+    width:44px;
+    height:90px;
   }
 
   .ultra-fan{
 
-    width:52px;
-    height:52px;
+    width:54px;
+    height:54px;
   }
 
   .fan-blade{
@@ -1788,17 +1777,18 @@ ULTRA PROFESSIONAL MOBILE UI
     right:0;
   }
 
-  /* PUMP INFO */
+  /* ================= PUMP INFO ================= */
 
   .pump-info-grid{
+
+    grid-template-columns:1fr 1fr;
+
     gap:10px;
   }
 
   .pump-info-card{
 
     min-height:68px;
-
-    padding:10px;
   }
 
   .pump-info-card h4{
@@ -1806,7 +1796,7 @@ ULTRA PROFESSIONAL MOBILE UI
     font-size:12px;
   }
 
-  /* BUTTON */
+  /* ================= BUTTONS ================= */
 
   .btn-row{
 
@@ -1818,18 +1808,25 @@ ULTRA PROFESSIONAL MOBILE UI
   .start-btn,
   .stop-btn{
 
-    width:100%;
-
     height:44px;
 
     font-size:13px;
   }
 
-  /* DIGITAL */
+  /* ================= DIGITAL INPUT ================= */
+
+  .digital-grid{
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+  }
 
   .digital-box{
 
-    min-height:110px;
+    min-height:120px;
+
+    padding:14px;
   }
 
   .digital-box h2{
@@ -1837,27 +1834,35 @@ ULTRA PROFESSIONAL MOBILE UI
     font-size:42px;
   }
 
-  /* REGISTERS */
+  .digital-box span{
+
+    font-size:16px;
+  }
+
+  /* ================= REGISTERS ================= */
 
   .register-grid{
+
+    grid-template-columns:1fr 1fr;
+
     gap:10px;
   }
 
   .register-box{
 
-    min-height:76px;
+    min-height:82px;
   }
 
   .register-box h2{
 
-    font-size:20px;
+    font-size:18px;
   }
 
-  /* POPUP */
+  /* ================= POPUP ================= */
 
   .top-command-popup{
 
-    top:80px;
+    top:90px;
     left:50%;
 
     transform:translateX(-50%);
@@ -1866,11 +1871,37 @@ ULTRA PROFESSIONAL MOBILE UI
 
     min-width:auto;
 
-    font-size:12px;
-
     padding:14px;
 
+    font-size:12px;
+
     border-radius:16px;
+  }
+
+}
+
+/* EXTRA SMALL */
+
+@media screen and (max-width:480px){
+
+  .register-grid{
+
+    grid-template-columns:1fr 1fr;
+  }
+
+  .digital-grid{
+
+    grid-template-columns:1fr 1fr;
+  }
+
+  .pump-info-grid{
+
+    grid-template-columns:1fr 1fr;
+  }
+
+  .info-grid{
+
+    grid-template-columns:1fr 1fr;
   }
 
 }
