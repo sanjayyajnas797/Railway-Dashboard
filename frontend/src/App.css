@@ -1011,148 +1011,162 @@ RESPONSIVE
 
 @media(max-width:768px){
 
+  /* APP */
+
   .app-layout{
-    flex-direction:column;
+    display:flex;
+    flex-direction:row;
   }
 
-  /* MOBILE NAVBAR */
+  /* SIDEBAR */
 
- .sidebar{
+  .sidebar{
 
-  width:70px;
+    width:72px;
 
-  background:
-  linear-gradient(
-    180deg,
-    rgba(2,12,26,.99),
-    rgba(3,20,40,.99)
-  );
+    position:fixed;
 
-  border-right:
-  1px solid rgba(255,255,255,.05);
+    left:0;
+    top:0;
+    bottom:0;
 
-  padding:8px 6px;
+    height:100vh;
 
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+    padding:10px 6px;
 
-  position:sticky;
-  top:0;
+    z-index:999999;
 
-  height:100vh;
-
-  z-index:999;
-}
-
-  .sidebar::-webkit-scrollbar{
-    display:none;
+    overflow-y:auto;
   }
 
   .logo-box{
-    display:none;
+    width:52px;
+    height:52px;
+    font-size:28px;
+    margin-bottom:14px;
   }
 
   .menu-list{
-
-    flex-direction:row;
-
-    width:max-content;
-
+    flex-direction:column;
+    width:100%;
     gap:8px;
   }
 
   .menu-item{
 
-    min-width:80px;
+    min-width:auto;
+
+    width:100%;
+
+    padding:10px 4px;
 
     font-size:9px;
-
-    padding:10px 8px;
 
     border-radius:12px;
   }
 
   /* MAIN */
 
- .main-container{
-  margin-top:170px;
-  padding:10px;
-}
+  .main-container{
+
+    margin-top:110px;
+
+    margin-left:72px;
+
+    width:calc(100% - 72px);
+
+    padding:8px;
+  }
 
   /* HEADER */
-.top-header{
 
-  top:58px;
+  .top-header{
 
-  left:0;
+    position:fixed;
 
-  right:0;
+    top:0;
 
-  border-radius:0;
+    left:72px;
 
-  height:110px;
+    right:0;
 
-  padding:16px;
-}
+    height:96px;
+
+    padding:12px;
+
+    border-radius:0;
+
+    z-index:999999;
+  }
+
   .top-header h1{
 
-    font-size:12px;
+    font-size:10px;
 
-    line-height:1.5;
+    max-width:150px;
 
-    max-width:190px;
+    line-height:1.4;
   }
 
   .top-header p{
-    font-size:9px;
+
+    font-size:8px;
+
+    margin-top:4px;
   }
 
   .header-right{
-
-    flex-direction:row;
-
-    align-items:center;
-
-    gap:8px;
+    gap:6px;
   }
 
   .live-box{
 
-    font-size:8px;
+    padding:7px 10px;
 
-    padding:8px 10px;
+    font-size:8px;
   }
 
   .time-box{
 
-    font-size:8px;
+    padding:7px 10px;
 
-    padding:8px 10px;
+    font-size:8px;
   }
 
-  /* INFO */
+  /* INFO GRID */
 
   .info-grid{
 
-    grid-template-columns:1fr 1fr;
+    display:grid;
 
-    gap:10px;
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:6px;
   }
 
   .info-card{
 
-    min-height:90px;
+    min-height:82px;
 
-    padding:12px;
+    padding:10px;
   }
 
   .info-card span{
-    font-size:8px;
+    font-size:7px;
   }
 
   .info-card h2{
-    font-size:18px;
+
+    font-size:14px;
+
+    margin-top:10px;
+  }
+
+  /* TOP GRID */
+
+  .top-grid{
+    grid-template-columns:1fr;
   }
 
   /* PUMP */
@@ -1162,75 +1176,90 @@ RESPONSIVE
   }
 
   .pump-title{
-    font-size:18px;
+    font-size:16px;
   }
 
   .rpm-box h3{
-    font-size:18px;
+    font-size:16px;
   }
 
   .pipeline-layout{
-    gap:8px;
+    gap:6px;
   }
 
   .solar-source{
 
-    width:42px;
-    height:42px;
+    width:38px;
+    height:38px;
 
-    font-size:18px;
+    font-size:16px;
   }
 
   .pipe-line{
 
-    width:34px;
+    width:30px;
     height:8px;
   }
 
   .ultra-pump{
 
-    width:74px;
+    width:72px;
     height:150px;
   }
 
   .ultra-motor-head{
 
-    width:38px;
-    height:50px;
+    width:36px;
+    height:48px;
   }
 
   .ultra-body{
 
-    width:44px;
-    height:90px;
+    width:42px;
+    height:88px;
   }
 
   .ultra-fan{
 
-    width:54px;
-    height:54px;
+    width:50px;
+    height:50px;
   }
 
   .fan-blade{
 
-    width:10px;
-    height:24px;
+    width:9px;
+    height:22px;
 
-    margin-left:-5px;
-    margin-top:-24px;
+    margin-left:-4px;
+    margin-top:-22px;
 
-    transform-origin:center 24px;
+    transform-origin:center 22px;
   }
 
   .smart-tank{
 
-    width:16px;
-    height:44px;
+    width:14px;
+    height:40px;
   }
+
+  /* PUMP INFO */
 
   .pump-info-grid{
     grid-template-columns:1fr 1fr;
   }
+
+  .pump-info-card{
+
+    min-height:70px;
+
+    padding:8px;
+  }
+
+  .pump-info-card h4{
+    font-size:11px;
+  }
+
+  /* BUTTON */
 
   .btn-row{
     flex-direction:column;
@@ -1238,19 +1267,26 @@ RESPONSIVE
 
   .start-btn,
   .stop-btn{
-    height:44px;
-    font-size:13px;
+
+    height:42px;
+
+    font-size:12px;
   }
 
   /* DIGITAL */
 
   .digital-grid{
+
     grid-template-columns:1fr 1fr;
+
+    gap:8px;
   }
 
   .digital-box{
 
     min-height:120px;
+
+    padding:12px;
   }
 
   .digital-box h2{
@@ -1258,18 +1294,19 @@ RESPONSIVE
   }
 
   .digital-box span{
-    font-size:16px;
+    font-size:14px;
   }
 
   /* REGISTERS */
 
   .register-grid{
+
     grid-template-columns:1fr 1fr;
   }
 
   .register-box{
 
-    min-height:82px;
+    min-height:84px;
   }
 
   .register-box h2{
@@ -1280,12 +1317,13 @@ RESPONSIVE
 
   .top-command-popup{
 
-    width:92%;
+    top:100px;
 
-    top:90px;
+    width:90%;
+
+    font-size:11px;
 
     text-align:center;
-
-    font-size:12px;
   }
+
 }
