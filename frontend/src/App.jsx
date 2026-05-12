@@ -192,57 +192,58 @@ async (pumpName, action) => {
 
   return (
 
-    <div className="app-layout">
+    
+
+  <div className="app-layout">
+
+    {/* SIDEBAR */}
+
+    <div className="sidebar">
+
+      <div className="logo-box">
+        ⚡
+      </div>
+
+      <div className="menu-list">
+
+        <div className="menu-item active-menu">
+          Dashboard
+        </div>
+
+        <div className="menu-item">
+          Pump Control
+        </div>
+
+        <div className="menu-item">
+          Sensor Data
+        </div>
+
+        <div className="menu-item">
+          Telemetry
+        </div>
+
+        <div className="menu-item">
+          Alerts
+        </div>
+
+        <div className="menu-item">
+          Reports
+        </div>
+
+        <div className="menu-item">
+          Settings
+        </div>
+
+      </div>
+
+    </div>
+
+   
 
   
 
 
 
-      {/* SIDEBAR */}
-
-      <div className="sidebar">
-
-        <div className="logo-box">
-          ⚡
-        </div>
-
-
-
-
-
-        <div className="menu-list">
-
-          <div className="menu-item active-menu">
-            Dashboard
-          </div>
-
-          <div className="menu-item">
-            Pump Control
-          </div>
-
-          <div className="menu-item">
-            Sensor Data
-          </div>
-
-          <div className="menu-item">
-            Telemetry
-          </div>
-
-          <div className="menu-item">
-            Alerts
-          </div>
-
-          <div className="menu-item">
-            Reports
-          </div>
-
-          <div className="menu-item">
-            Settings
-          </div>
-
-        </div>
-
-      </div>
 
 
 
@@ -260,60 +261,49 @@ async (pumpName, action) => {
 
 
 
-        {/* HEADER */}
+       <div className="top-header">
 
-        <div className="top-header">
+  <div className="mobile-menu">
+    ☰
+  </div>
 
-          <div>
+  <div className="mobile-logo">
+    ⚡
+  </div>
 
-            <h1>
-              🚆 INDIAN RAILWAY SOLAR MONITORING SYSTEM
-            </h1>
+  <div className="mobile-header-content">
 
-            <p>
-              Real Time Solar Pump & Telemetry Dashboard
-            </p>
+    <h1>
+      INDIAN RAILWAY SOLAR MONITORING SYSTEM
+    </h1>
 
-          </div>
+    <p>
+      Real Time Solar Pump & Telemetry Dashboard
+    </p>
 
+  </div>
 
-
-
-
-          <div className="header-right">
+  <div className="header-right">
 
     <div
-  className={
-    dashboard.deviceInfo.mqttStatus === "CONNECTED"
-      ? "live-box online"
-      : "live-box offline"
-  }
->
+      className={
+        dashboard.deviceInfo.mqttStatus === "CONNECTED"
+        ? "live-box online"
+        : "live-box offline"
+      }
+    >
 
-  <div className="live-dot"></div>
+      <div className="live-dot"></div>
 
-  {
-    dashboard.deviceInfo.mqttStatus || "OFFLINE"
-  }
+      {
+        dashboard.deviceInfo.mqttStatus || "OFFLINE"
+      }
+
+    </div>
+
+  </div>
 
 </div>
-
-
-
-
-
-            <div className="time-box">
-
-              {
-                time.toLocaleTimeString()
-              }
-
-            </div>
-
-          </div>
-
-        </div>
-
 
 
 
@@ -348,7 +338,7 @@ async (pumpName, action) => {
   {/* NEW */}
 
   <div className="info-card">
-    <span>MQTT STATUS</span>
+    <span>MQTT </span>
     <h2>
       {
         dashboard.deviceInfo.mqttStatus || "OFFLINE"
@@ -368,7 +358,7 @@ async (pumpName, action) => {
   </div>
 
   <div className="info-card">
-    <span>LAST PACKET</span>
+    <span> PACKET</span>
     <h2>
       {
         dashboard.deviceInfo.lastPacketTime || "--"
@@ -393,9 +383,17 @@ async (pumpName, action) => {
 
           <div className="section-card">
 
-            <div className="section-title">
-              ⚡ PUMP CONTROL CENTER
-            </div>
+            <div className="title-row">
+
+  <div className="section-title">
+    ⚡ PUMP CONTROL CENTER
+  </div>
+
+  <button className="view-btn">
+    View All
+  </button>
+
+</div>
 
 
 
@@ -710,10 +708,17 @@ async (pumpName, action) => {
 
           <div className="section-card">
 
-            <div className="section-title">
-              📡 DIGITAL INPUT STATUS
-            </div>
+            <div className="title-row">
 
+  <div className="section-title">
+    📡 DIGITAL INPUT STATUS
+  </div>
+
+  <button className="view-btn">
+    View All
+  </button>
+
+</div>
 
 
 
@@ -774,10 +779,17 @@ async (pumpName, action) => {
 
 <div className="section-card">
 
+  <div className="title-row">
+
   <div className="section-title">
     🌞 SOLAR SENSOR REGISTERS
   </div>
 
+  <button className="view-btn">
+    View All
+  </button>
+
+</div>
   <div className="register-grid">
 
     {
@@ -809,9 +821,42 @@ async (pumpName, action) => {
       )
     }
 
-  </div>
-
 </div>
+
+      </div>
+              
+</div>
+
+      
+
+      {/* MOBILE BOTTOM NAV */}
+
+      <div className="mobile-bottom-nav">
+
+        <div className="bottom-nav-item active-bottom">
+          <span>⌂</span>
+          <p>Dashboard</p>
+        </div>
+
+        <div className="bottom-nav-item">
+          <span>⚙</span>
+          <p>Pump</p>
+        </div>
+
+        <div className="bottom-nav-item">
+          <span>📈</span>
+          <p>Sensor</p>
+        </div>
+
+        <div className="bottom-nav-item">
+          <span>🔔</span>
+          <p>Alerts</p>
+        </div>
+
+        <div className="bottom-nav-item">
+          <span>☰</span>
+          <p>Settings</p>
+        </div>
 
       </div>
 
@@ -820,3 +865,7 @@ async (pumpName, action) => {
   );
 
 }
+
+
+  
+
