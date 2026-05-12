@@ -1016,6 +1016,7 @@ RESPONSIVE
   .app-layout{
     display:flex;
     flex-direction:row;
+    overflow-x:auto;
   }
 
   /* SIDEBAR */
@@ -1073,7 +1074,9 @@ RESPONSIVE
 
     margin-left:72px;
 
-    width:calc(100% - 72px);
+    width:max-content;
+
+    min-width:calc(100vw - 72px);
 
     padding:8px;
   }
@@ -1097,6 +1100,8 @@ RESPONSIVE
     border-radius:0;
 
     z-index:999999;
+
+    overflow:hidden;
   }
 
   .top-header h1{
@@ -1140,9 +1145,11 @@ RESPONSIVE
     display:grid;
 
     grid-template-columns:
-    repeat(4,1fr);
+    repeat(4,minmax(140px,1fr));
 
-    gap:6px;
+    gap:8px;
+
+    min-width:700px;
   }
 
   .info-card{
@@ -1166,13 +1173,28 @@ RESPONSIVE
   /* TOP GRID */
 
   .top-grid{
-    grid-template-columns:1fr;
+
+    display:block;
+
+    overflow-x:auto;
+  }
+
+  .section-card{
+
+    min-width:max-content;
   }
 
   /* PUMP */
 
   .pump-grid{
-    grid-template-columns:1fr;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    min-width:700px;
   }
 
   .pump-title{
@@ -1184,7 +1206,7 @@ RESPONSIVE
   }
 
   .pipeline-layout{
-    gap:6px;
+    gap:10px;
   }
 
   .solar-source{
@@ -1197,55 +1219,59 @@ RESPONSIVE
 
   .pipe-line{
 
-    width:30px;
+    width:42px;
     height:8px;
   }
 
   .ultra-pump{
 
-    width:72px;
-    height:150px;
+    width:90px;
+    height:170px;
   }
 
   .ultra-motor-head{
 
-    width:36px;
-    height:48px;
+    width:42px;
+    height:56px;
   }
 
   .ultra-body{
 
-    width:42px;
-    height:88px;
+    width:48px;
+    height:100px;
   }
 
   .ultra-fan{
 
-    width:50px;
-    height:50px;
+    width:58px;
+    height:58px;
   }
 
   .fan-blade{
 
-    width:9px;
-    height:22px;
+    width:11px;
+    height:26px;
 
-    margin-left:-4px;
-    margin-top:-22px;
+    margin-left:-5px;
+    margin-top:-26px;
 
-    transform-origin:center 22px;
+    transform-origin:center 26px;
   }
 
   .smart-tank{
 
-    width:14px;
-    height:40px;
+    width:16px;
+    height:44px;
   }
 
   /* PUMP INFO */
 
   .pump-info-grid{
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:8px;
   }
 
   .pump-info-card{
@@ -1262,7 +1288,7 @@ RESPONSIVE
   /* BUTTON */
 
   .btn-row{
-    flex-direction:column;
+    flex-direction:row;
   }
 
   .start-btn,
@@ -1280,6 +1306,8 @@ RESPONSIVE
     grid-template-columns:1fr 1fr;
 
     gap:8px;
+
+    min-width:420px;
   }
 
   .digital-box{
@@ -1301,7 +1329,12 @@ RESPONSIVE
 
   .register-grid{
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:8px;
+
+    min-width:700px;
   }
 
   .register-box{
