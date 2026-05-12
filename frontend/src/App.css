@@ -1012,24 +1012,22 @@ RESPONSIVE
 @media(max-width:768px){
 
   body{
-    overflow-x:auto;
-    overflow-y:auto;
+    overflow-x:hidden;
   }
 
   /* APP */
 
   .app-layout{
     display:flex;
-    flex-direction:row;
-    min-width:1450px;
-    width:1450px;
+    width:100%;
+    min-width:100%;
   }
 
   /* SIDEBAR */
 
   .sidebar{
 
-    width:72px;
+    width:74px;
 
     position:fixed;
 
@@ -1039,35 +1037,34 @@ RESPONSIVE
 
     height:100vh;
 
-    padding:10px 6px;
+    z-index:99999;
 
-    z-index:999999;
-
-    overflow-y:auto;
+    padding:8px 6px;
   }
 
   .logo-box{
-    width:52px;
-    height:52px;
-    font-size:28px;
+
+    width:50px;
+    height:50px;
+
+    font-size:26px;
+
     margin-bottom:14px;
   }
 
   .menu-list{
-    flex-direction:column;
-    width:100%;
     gap:8px;
   }
 
   .menu-item{
 
-    min-width:auto;
-
     width:100%;
+
+    min-width:100%;
 
     padding:10px 4px;
 
-    font-size:9px;
+    font-size:8px;
 
     border-radius:12px;
   }
@@ -1076,15 +1073,15 @@ RESPONSIVE
 
   .main-container{
 
-    margin-top:96px;
+    margin-left:74px;
 
-    margin-left:72px;
+    margin-top:92px;
 
-    width:1378px;
+    width:calc(100% - 74px);
 
-    min-width:1378px;
+    min-width:auto;
 
-    padding:10px;
+    padding:8px;
   }
 
   /* HEADER */
@@ -1095,204 +1092,178 @@ RESPONSIVE
 
     top:0;
 
-    left:72px;
+    left:74px;
 
-    width:1378px;
+    right:0;
 
-    min-width:1378px;
+    width:auto;
 
-    height:96px;
+    min-width:auto;
 
-    padding:0 22px;
+    height:92px;
 
-    border-radius:0;
+    padding:10px 12px;
 
     z-index:999999;
-
-    overflow:hidden;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:
-    linear-gradient(
-      90deg,
-      #07182d 0%,
-      #051427 100%
-    );
-
-    border-bottom:
-    1px solid rgba(255,255,255,.05);
-
-    box-shadow:
-    0 8px 25px rgba(0,0,0,.55);
   }
 
   .top-header h1{
 
-    font-size:18px;
+    font-size:11px;
 
-    max-width:none;
+    line-height:1.4;
 
-    line-height:1.3;
+    max-width:160px;
   }
 
   .top-header p{
 
-    font-size:11px;
+    font-size:8px;
 
     margin-top:4px;
   }
 
   .header-right{
-    gap:10px;
+    gap:6px;
   }
 
   .live-box{
 
-    padding:10px 14px;
+    padding:7px 10px;
 
-    font-size:10px;
+    font-size:8px;
   }
 
   .time-box{
 
-    padding:10px 14px;
+    padding:7px 10px;
 
-    font-size:10px;
+    font-size:8px;
   }
 
   /* INFO GRID */
 
   .info-grid{
 
-    display:grid;
-
     grid-template-columns:
-    repeat(4,1fr);
+    1fr 1fr;
 
-    gap:12px;
+    gap:8px;
 
-    min-width:100%;
+    margin-bottom:10px;
   }
 
   .info-card{
 
-    min-height:100px;
+    min-height:88px;
 
-    padding:14px;
+    padding:10px;
   }
 
   .info-card span{
-    font-size:10px;
+    font-size:8px;
   }
 
   .info-card h2{
 
-    font-size:28px;
+    font-size:16px;
 
-    margin-top:14px;
+    margin-top:10px;
   }
 
   /* TOP GRID */
 
   .top-grid{
 
-    display:grid;
-
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:1fr;
 
     gap:10px;
-
-    overflow:visible;
   }
 
-  .section-card{
+  /* PUMP GRID */
 
-    min-width:auto;
+  .pump-grid{
+
+    grid-template-columns:1fr;
+
+    gap:10px;
+  }
+
+  .section-title{
+    font-size:14px;
   }
 
   /* PUMP */
 
-  .pump-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:10px;
-
-    min-width:100%;
+  .railway-pump-card{
+    padding:10px;
   }
 
   .pump-title{
-    font-size:38px;
+    font-size:18px;
   }
 
   .rpm-box h3{
-    font-size:26px;
+    font-size:18px;
   }
 
   .pipeline-layout{
-    gap:22px;
+    gap:10px;
   }
 
   .solar-source{
 
-    width:54px;
-    height:54px;
+    width:42px;
+    height:42px;
 
-    font-size:24px;
+    font-size:18px;
   }
 
   .pipe-line{
 
-    width:86px;
-    height:10px;
+    width:38px;
+    height:8px;
   }
 
   .ultra-pump{
 
-    width:120px;
-    height:220px;
+    width:82px;
+    height:165px;
   }
 
   .ultra-motor-head{
 
-    width:58px;
-    height:78px;
+    width:40px;
+    height:54px;
   }
 
   .ultra-body{
 
-    width:64px;
-    height:140px;
+    width:46px;
+    height:100px;
   }
 
   .ultra-fan{
 
-    width:78px;
-    height:78px;
+    width:56px;
+    height:56px;
   }
 
   .fan-blade{
 
-    width:16px;
-    height:42px;
+    width:11px;
+    height:28px;
 
-    margin-left:-8px;
-    margin-top:-42px;
+    margin-left:-5px;
+    margin-top:-28px;
 
-    transform-origin:center 42px;
+    transform-origin:center 28px;
   }
 
   .smart-tank{
 
-    width:24px;
-    height:58px;
+    width:16px;
+    height:42px;
   }
 
   /* PUMP INFO */
@@ -1300,60 +1271,59 @@ RESPONSIVE
   .pump-info-grid{
 
     grid-template-columns:
-    repeat(4,1fr);
+    1fr 1fr;
 
-    gap:10px;
+    gap:8px;
   }
 
   .pump-info-card{
 
-    min-height:78px;
+    min-height:70px;
 
-    padding:10px;
+    padding:8px;
   }
 
   .pump-info-card h4{
-    font-size:13px;
+    font-size:11px;
   }
 
-  /* BUTTON */
+  /* BUTTONS */
 
   .btn-row{
-    flex-direction:row;
+    gap:8px;
   }
 
   .start-btn,
   .stop-btn{
 
-    height:52px;
+    height:42px;
 
-    font-size:14px;
+    font-size:12px;
   }
 
   /* DIGITAL */
 
   .digital-grid{
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+    1fr 1fr;
 
-    gap:12px;
-
-    min-width:100%;
+    gap:8px;
   }
 
   .digital-box{
 
-    min-height:150px;
+    min-height:120px;
 
-    padding:14px;
+    padding:10px;
   }
 
   .digital-box h2{
-    font-size:56px;
+    font-size:40px;
   }
 
   .digital-box span{
-    font-size:18px;
+    font-size:12px;
   }
 
   /* REGISTERS */
@@ -1361,31 +1331,31 @@ RESPONSIVE
   .register-grid{
 
     grid-template-columns:
-    repeat(6,1fr);
+    1fr 1fr;
 
-    gap:12px;
-
-    min-width:100%;
+    gap:8px;
   }
 
   .register-box{
 
-    min-height:96px;
+    min-height:80px;
+
+    padding:8px;
   }
 
   .register-box h2{
-    font-size:28px;
+    font-size:18px;
   }
 
   /* POPUP */
 
   .top-command-popup{
 
-    top:110px;
+    top:100px;
 
-    width:max-content;
+    width:88%;
 
-    font-size:14px;
+    font-size:11px;
 
     text-align:center;
   }
