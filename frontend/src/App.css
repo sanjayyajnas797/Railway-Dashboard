@@ -1526,10 +1526,14 @@ MQTT + TELEMETRY EXTRA UI
 
 
 /* =========================================
-ULTRA MOBILE RESPONSIVE
+ PERFECT MOBILE RESPONSIVE UI
 ========================================= */
 
-@media(max-width:768px){
+@media screen and (max-width: 768px){
+
+  *{
+    -webkit-tap-highlight-color: transparent;
+  }
 
   body{
     overflow-x:hidden;
@@ -1537,24 +1541,24 @@ ULTRA MOBILE RESPONSIVE
 
   .app-layout{
     flex-direction:column;
+    width:100%;
+    overflow-x:hidden;
   }
 
   /* SIDEBAR */
 
   .sidebar{
 
-    width:100%;
-    height:auto;
-
     position:fixed;
+
     bottom:0;
     left:0;
     right:0;
 
-    z-index:9999;
+    width:100%;
+    height:72px;
 
-    flex-direction:row;
-    justify-content:space-around;
+    z-index:9999;
 
     padding:8px;
 
@@ -1565,9 +1569,14 @@ ULTRA MOBILE RESPONSIVE
       rgba(3,20,40,.98)
     );
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(20px);
 
-    border-top:1px solid rgba(0,255,255,.15);
+    border-top:
+    1px solid rgba(0,255,255,.15);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
   }
 
   .logo-box{
@@ -1575,8 +1584,14 @@ ULTRA MOBILE RESPONSIVE
   }
 
   .menu-list{
+
+    width:100%;
+
+    display:flex;
     flex-direction:row;
+
     justify-content:space-between;
+
     gap:6px;
   }
 
@@ -1584,27 +1599,34 @@ ULTRA MOBILE RESPONSIVE
 
     flex:1;
 
-    font-size:9px;
+    padding:8px 2px;
 
-    padding:10px 4px;
+    font-size:8px;
 
-    border-radius:12px;
+    border-radius:10px;
   }
 
   /* MAIN */
 
   .main-container{
 
-    padding:8px;
+    width:100%;
 
-    padding-bottom:95px;
+    padding:10px;
+
+    padding-bottom:90px;
+
+    overflow:hidden;
   }
 
   /* HEADER */
 
   .top-header{
 
+    width:100%;
+
     flex-direction:column;
+
     align-items:flex-start;
 
     gap:12px;
@@ -1616,18 +1638,23 @@ ULTRA MOBILE RESPONSIVE
 
   .top-header h1{
 
-    font-size:15px;
+    font-size:14px;
 
-    line-height:1.4;
+    line-height:1.5;
+
+    letter-spacing:.5px;
   }
 
   .top-header p{
+
     font-size:10px;
   }
 
   .header-right{
 
     width:100%;
+
+    display:flex;
 
     justify-content:space-between;
   }
@@ -1646,142 +1673,175 @@ ULTRA MOBILE RESPONSIVE
     padding:8px 10px;
   }
 
-  /* INFO */
+  /* GRID */
 
-  .info-grid{
-    grid-template-columns:1fr;
-    gap:10px;
+  .info-grid,
+  .top-grid,
+  .pump-grid,
+  .digital-grid,
+  .register-grid,
+  .pump-info-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr !important;
+
+    gap:12px;
   }
+
+  /* CARDS */
+
+  .section-card,
+  .railway-pump-card,
+  .info-card,
+  .digital-box,
+  .register-box{
+
+    width:100%;
+
+    border-radius:18px;
+  }
+
+  .section-card{
+    padding:14px;
+  }
+
+  /* INFO */
 
   .info-card{
 
-    min-height:85px;
+    min-height:90px;
 
     padding:14px;
   }
 
   .info-card h2{
 
-    font-size:18px;
+    font-size:20px;
   }
 
-  /* TOP GRID */
+  /* PUMP */
 
-  .top-grid{
-    grid-template-columns:1fr;
-  }
+  .pump-top-row{
 
-  /* PUMP GRID */
-
-  .pump-grid{
-    grid-template-columns:1fr;
-  }
-
-  .railway-pump-card{
-
-    padding:14px;
-
-    border-radius:20px;
+    align-items:flex-start;
   }
 
   .pump-title{
 
-    font-size:24px;
+    font-size:18px;
   }
 
-  .section-title{
+  .rpm-box h3{
 
-    font-size:15px;
+    font-size:18px;
   }
 
   /* PIPELINE */
 
   .pipeline-layout{
 
-    gap:10px;
+    width:100%;
 
-    transform:scale(.82);
+    display:flex;
 
-    margin-top:-10px;
-    margin-bottom:-10px;
+    justify-content:center;
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:10px;
+    margin-bottom:10px;
+
+    transform:none;
   }
 
   .solar-source{
 
-    width:48px;
-    height:48px;
+    width:44px;
+    height:44px;
 
-    font-size:20px;
+    font-size:18px;
 
     left:0;
   }
 
-  .smart-tank{
+  .pipe-line{
 
-    right:0;
+    width:48px;
+    height:8px;
+
+    margin:0;
   }
 
-  /* PUMP */
+  /* PUMP CENTER */
 
   .ultra-pump{
 
-    width:100px;
-    height:200px;
+    width:72px;
+    height:150px;
 
     margin:0;
   }
 
   .ultra-motor-head{
 
-    width:50px;
-    height:68px;
+    width:38px;
+    height:52px;
   }
 
   .ultra-body{
 
-    width:58px;
-    height:120px;
+    width:44px;
+    height:90px;
   }
 
   .ultra-fan{
 
-    width:68px;
-    height:68px;
+    width:54px;
+    height:54px;
   }
 
   .fan-blade{
 
-    height:36px;
+    width:12px;
+    height:28px;
+
+    margin-left:-6px;
+    margin-top:-28px;
+
+    transform-origin:center 28px;
   }
 
-  /* INFO BOX */
+  .smart-tank{
 
-  .pump-info-grid{
+    width:18px;
+    height:48px;
 
-    grid-template-columns:1fr 1fr;
-
-    gap:8px;
+    right:0;
   }
+
+  /* PUMP INFO */
 
   .pump-info-card{
 
-    min-height:68px;
+    min-height:72px;
 
-    padding:8px;
+    padding:10px;
   }
 
   .pump-info-card h4{
 
-    font-size:11px;
+    font-size:12px;
   }
 
-  /* BUTTON */
+  /* BUTTONS */
 
   .btn-row{
 
     flex-direction:column;
 
-    gap:8px;
+    gap:10px;
   }
 
   .start-btn,
@@ -1792,40 +1852,27 @@ ULTRA MOBILE RESPONSIVE
     height:46px;
 
     font-size:13px;
+
+    border-radius:12px;
   }
 
   /* DIGITAL */
 
-  .digital-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
   .digital-box{
 
     min-height:110px;
-
-    padding:12px;
   }
 
   .digital-box h2{
 
-    font-size:38px;
+    font-size:42px;
   }
 
   /* REGISTERS */
 
-  .register-grid{
-
-    grid-template-columns:1fr 1fr;
-
-    gap:8px;
-  }
-
   .register-box{
 
-    min-height:72px;
-
-    border-radius:14px;
+    min-height:80px;
   }
 
   .register-box h2{
@@ -1833,45 +1880,50 @@ ULTRA MOBILE RESPONSIVE
     font-size:22px;
   }
 
+  /* POPUP */
+
+  .top-command-popup{
+
+    top:90px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+
+    min-width:auto;
+
+    padding:14px;
+
+    font-size:12px;
+
+    border-radius:16px;
+  }
+
 }
+
 
 /* EXTRA SMALL MOBILE */
 
-@media(max-width:480px){
+@media screen and (max-width:480px){
 
   .top-header h1{
-    font-size:13px;
+    font-size:12px;
   }
 
   .pump-title{
-    font-size:20px;
+    font-size:16px;
   }
 
-  .pipeline-layout{
-    transform:scale(.72);
+  .section-title{
+    font-size:14px;
   }
 
-  .pump-info-grid{
-    grid-template-columns:1fr;
-  }
-
-  .digital-grid{
-    grid-template-columns:1fr;
-  }
-
-  .register-grid{
-    grid-template-columns:1fr;
-  }
-
-  .menu-item{
-    font-size:8px;
+  .digital-box h2{
+    font-size:36px;
   }
 
 }
-
-
-
-
 
 
 
