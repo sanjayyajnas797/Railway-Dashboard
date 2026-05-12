@@ -1132,13 +1132,17 @@ RESPONSIVE
 
   .header-right{
 
-    display:flex;
-    align-items:center;
+  display:flex;
+  align-items:center;
 
-    gap:10px;
+  gap:8px;
 
-    margin-left:auto;
-  }
+  margin-left:auto;
+
+  padding-right:2px;
+
+  transform:translateX(-6px);
+}
 
   .live-box{
 
@@ -1261,9 +1265,9 @@ RESPONSIVE
 
   .railway-pump-card{
 
-    min-width:220px;
+      min-width:245px;
 
-    max-width:220px;
+  max-width:245px;
 
     scroll-snap-align:start;
 
