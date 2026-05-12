@@ -1499,3 +1499,150 @@ RESPONSIVE
   }
 
 }
+
+
+
+
+/* =========================================
+DESKTOP PERFECT ALIGNMENT FIX
+========================================= */
+
+@media (min-width: 769px){
+
+  .sidebar{
+    display:flex !important;
+  }
+
+  .mobile-bottom-nav,
+  .mobile-menu,
+  .mobile-logo,
+  .view-btn{
+    display:none !important;
+  }
+
+  .main-container{
+
+    margin-left:92px !important;
+
+    margin-top:96px !important;
+
+    width:calc(100% - 92px) !important;
+
+    padding:14px !important;
+  }
+
+  .top-header{
+
+    position:fixed;
+
+    top:0;
+    left:92px;
+    right:0;
+
+    height:96px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 28px !important;
+
+    z-index:999999;
+
+    overflow:hidden;
+  }
+
+  .mobile-header-content{
+    display:block;
+  }
+
+  .header-right{
+
+    margin-left:auto;
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+    transform:none !important;
+  }
+
+  .info-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:12px;
+
+    width:100%;
+  }
+
+  .top-grid{
+
+    display:grid !important;
+
+    grid-template-columns:2fr 1fr !important;
+
+    gap:14px;
+
+    width:100%;
+  }
+
+  .pump-grid{
+
+    display:grid !important;
+
+    grid-template-columns:1fr 1fr !important;
+
+    gap:14px;
+
+    width:100%;
+  }
+
+  .railway-pump-card{
+
+    min-width:unset !important;
+
+    max-width:none !important;
+
+    width:100% !important;
+  }
+
+  .digital-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    width:100%;
+  }
+
+  .register-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:12px;
+
+    width:100%;
+  }
+
+  .section-card{
+    width:100%;
+  }
+
+  .title-row{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:14px;
+  }
+
+}
