@@ -1,5 +1,4 @@
 const mqtt = require("mqtt");
-
 const fs = require("fs");
 
 const client = mqtt.connect(
@@ -78,14 +77,7 @@ let dashboard = {
   pumps: {
 
     pump1: {
-      name: "PUMP 1",
-      status: "OFF",
-      runtime: "0h 0m 0s",
-      lastUpdated: "--"
-    },
-
-    pump2: {
-      name: "PUMP 2",
+      name: "MAIN PUMP",
       status: "OFF",
       runtime: "0h 0m 0s",
       lastUpdated: "--"
@@ -230,133 +222,116 @@ client.on("message", (topic, message) => {
 
 
     // ====================================
-    // DO21
+    // DO21 / DO22
     // ====================================
 
-    if (data.PID === "DO21") {
+    if (
+      data.PID === "DO21" ||
+      data.PID === "DO22"
+    ) {
 
-      dashboard.digitalInputs.DI0 =
-        data.DO0 || 0;
+     // ====================================
+// DIGITAL OUTPUT UPDATE
+// ====================================
 
-      dashboard.digitalInputs.DI1 =
-        data.DO1 || 0;
+dashboard.digitalInputs.DI0 =
+  data.DO0 ?? dashboard.digitalInputs.DI0;
 
-      dashboard.digitalInputs.DI2 =
-        data.DO2 || 0;
+dashboard.digitalInputs.DI1 =
+  data.DO1 ?? dashboard.digitalInputs.DI1;
 
-      dashboard.digitalInputs.DI3 =
-        data.DO3 || 0;
+dashboard.digitalInputs.DI2 =
+  data.DO2 ?? dashboard.digitalInputs.DI2;
 
-
-
-
-
-      dashboard.digitalOutputs.DO0 =
-        data.DO0 || 0;
-
-      dashboard.digitalOutputs.DO1 =
-        data.DO1 || 0;
-
-      dashboard.digitalOutputs.DO2 =
-        data.DO2 || 0;
-
-      dashboard.digitalOutputs.DO3 =
-        data.DO3 || 0;
+dashboard.digitalInputs.DI3 =
+  data.DO3 ?? dashboard.digitalInputs.DI3;
 
 
 
 
 
-      // ================================
-      // PUMP 1 RUNTIME
-      // ================================
+dashboard.digitalOutputs.DO0 =
+  data.DO0 ?? dashboard.digitalOutputs.DO0;
 
-      if (
-        data.DO0 === 1 &&
-        runtimeData.pump1.startTime === null
-      ) {
+dashboard.digitalOutputs.DO1 =
+  data.DO1 ?? dashboard.digitalOutputs.DO1;
 
-        runtimeData.pump1.startTime =
-          Date.now();
+dashboard.digitalOutputs.DO2 =
+  data.DO2 ?? dashboard.digitalOutputs.DO2;
 
-      }
-
-
-
-      if (
-        data.DO0 === 0 &&
-        runtimeData.pump1.startTime
-      ) {
-
-        runtimeData.pump1.totalRuntime +=
-          Date.now() -
-          runtimeData.pump1.startTime;
-
-        runtimeData.pump1.startTime =
-          null;
-
-        saveRuntime();
-
-      }
+dashboard.digitalOutputs.DO3 =
+  data.DO3 ?? dashboard.digitalOutputs.DO3;
 
 
 
 
 
-      // ================================
-      // PUMP 2 RUNTIME
-      // ================================
+// ====================================
+// MAIN PUMP START
+// ====================================
 
-      if (
-        data.DO1 === 1 &&
-        runtimeData.pump2.startTime === null
-      ) {
+if (data.DO0 === 1) {
 
-        runtimeData.pump2.startTime =
-          Date.now();
-
-      }
+  dashboard.pumps.pump1.status =
+    "ON";
 
 
 
-      if (
-        data.DO1 === 0 &&
-        runtimeData.pump2.startTime
-      ) {
+  dashboard.digitalOutputs.DO1 = 0;
 
-        runtimeData.pump2.totalRuntime +=
-          Date.now() -
-          runtimeData.pump2.startTime;
 
-        runtimeData.pump2.startTime =
-          null;
 
-        saveRuntime();
+  if (
+    runtimeData.pump1.startTime === null
+  ) {
 
-      }
+    runtimeData.pump1.startTime =
+      Date.now();
+
+  }
+
+}
 
 
 
 
 
-      dashboard.pumps.pump1.status =
-        data.DO0 === 1
-          ? "ON"
-          : "OFF";
+// ====================================
+// MAIN PUMP STOP
+// ====================================
 
-      dashboard.pumps.pump2.status =
-        data.DO1 === 1
-          ? "ON"
-          : "OFF";
+if (data.DO1 === 1) {
 
+  dashboard.pumps.pump1.status =
+    "OFF";
+
+
+
+  dashboard.digitalOutputs.DO0 = 0;
+
+
+
+  if (
+    runtimeData.pump1.startTime
+  ) {
+
+    runtimeData.pump1.totalRuntime +=
+      Date.now() -
+      runtimeData.pump1.startTime;
+
+    runtimeData.pump1.startTime =
+      null;
+
+    saveRuntime();
+
+  }
+
+}
 
 
 
 
       dashboard.pumps.pump1.lastUpdated =
-        new Date().toLocaleTimeString();
-
-      dashboard.pumps.pump2.lastUpdated =
         new Date().toLocaleTimeString();
 
     }
@@ -414,7 +389,7 @@ client.on("message", (topic, message) => {
 
 
     // ====================================
-    // LIVE RUNTIME UPDATE
+    // LIVE RUNTIME
     // ====================================
 
     let pump1Ms =
@@ -432,26 +407,8 @@ client.on("message", (topic, message) => {
 
 
 
-    let pump2Ms =
-      runtimeData.pump2.totalRuntime;
-
-    if (
-      runtimeData.pump2.startTime
-    ) {
-
-      pump2Ms +=
-        Date.now() -
-        runtimeData.pump2.startTime;
-
-    }
-
-
-
     dashboard.pumps.pump1.runtime =
       formatRuntime(pump1Ms);
-
-    dashboard.pumps.pump2.runtime =
-      formatRuntime(pump2Ms);
 
 
 
@@ -495,48 +452,72 @@ setInterval(() => {
 
 
 // ========================================
-// PUMP CONTROL
+// PUMP ON
 // ========================================
 
 const pump1On = () => {
 
+  // DO0 HIGH
   client.publish(
     "CWT00004:CWTIO-SVR",
     "$%%IOOH0$"
   );
 
+  console.log(
+    "Pump ON Command Sent"
+  );
+
+
+
+  // DO0 LOW RESET
+  setTimeout(() => {
+
+    client.publish(
+      "CWT00004:CWTIO-SVR",
+      "$%%IOOL0$"
+    );
+
+    console.log(
+      "DO0 LOW Reset Sent"
+    );
+
+  }, 1000);
+
 };
 
 
+
+// ========================================
+// PUMP OFF
+// ========================================
 
 const pump1Off = () => {
 
-  client.publish(
-    "CWT00004:CWTIO-SVR",
-    "$%%IOOL0$"
-  );
-
-};
-
-
-
-const pump2On = () => {
-
+  // DO1 HIGH
   client.publish(
     "CWT00004:CWTIO-SVR",
     "$%%IOOH1$"
   );
 
-};
-
-
-
-const pump2Off = () => {
-
-  client.publish(
-    "CWT00004:CWTIO-SVR",
-    "$%%IOOL1$"
+  console.log(
+    "Pump OFF Command Sent"
   );
+
+
+
+  // DO1 LOW RESET
+  setTimeout(() => {
+
+    client.publish(
+      "CWT00004:CWTIO-SVR",
+      "$%%IOOL1$"
+    );
+
+    console.log(
+      "DO1 LOW Reset Sent"
+    );
+
+  }, 1000);
 
 };
 
@@ -551,9 +532,6 @@ module.exports = {
   dashboard,
 
   pump1On,
-  pump1Off,
-
-  pump2On,
-  pump2Off
+  pump1Off
 
 };

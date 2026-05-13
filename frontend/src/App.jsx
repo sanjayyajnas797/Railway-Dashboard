@@ -185,7 +185,9 @@ async (pumpName, action) => {
 
 
 
-
+const isPumpRunning =
+  dashboard.digitalOutputs?.DO0 === 1 &&
+  dashboard.digitalOutputs?.DO1 !== 1;
 
 
 
@@ -401,296 +403,262 @@ async (pumpName, action) => {
 
             <div className="pump-grid">
 
-              {
+             
 
-                Object.entries(dashboard.pumps).map(
-                  ([key, pumpData]) => (
-
-                    <div
-                      key={key}
-                      className={
-                        pumpData.status === "ON"
-                          ? "railway-pump-card active-pump"
-                          : "railway-pump-card inactive-pump"
-                      }
-                    >
-
-                      {/* TOP */}
-
-                      <div className="pump-top-row">
-
-                        <div>
-
-                          <div className="pump-title">
-                            {pumpData.name}
-                          </div>
-
-
-
-
-
-                          <div
-                            className={
-                              pumpData.status === "ON"
-                                ? "live-status running-status"
-                                : "live-status stopped-status"
-                            }
-                          >
-
-                            <div className="status-dot"></div>
-
-                            {
-                              pumpData.status === "ON"
-                                ? "RUNNING"
-                                : "STOPPED"
-                            }
-
-                          </div>
-
-                        </div>
-
-
-
-
-
-                        <div className="rpm-box">
-
-                          <span>
-                            SOLAR POWER
-                          </span>
-
-                          <h3>
-                            {
-                              dashboard.solarPower
-                            } W
-                          </h3>
-
-                        </div>
-
-                      </div>
-
-
-
-
-
-
-
-
-<div className="pipeline-layout">
-
-  {/* SOLAR */}
-  <div className="solar-source">
-    ☀
-  </div>
-
-  {/* LEFT PIPE */}
-  <div
-    className={
-      pumpData.status === "ON"
-        ? "pipe-line flow-active"
-        : "pipe-line"
-    }
-  ></div>
-
-  <div
+                  <div
   className={
-    pumpData.status === "ON"
-      ? "ultra-pump ultra-running"
-      : "ultra-pump ultra-stop"
+    isPumpRunning
+      ? "railway-pump-card active-pump"
+      : "railway-pump-card inactive-pump"
   }
 >
 
-  {/* MOTOR */}
+  {/* TOP */}
 
-  <div className="ultra-motor-head">
+  <div className="pump-top-row">
 
-    <div className="head-cap"></div>
+    <div>
 
-    <div className="motor-grills"></div>
+      <div className="pump-title">
+        MAIN PUMP
+      </div>
 
-  </div>
+      <div
+        className={
+          isPumpRunning
+            ? "live-status running-status"
+            : "live-status stopped-status"
+        }
+      >
 
-  {/* BODY */}
+        <div className="status-dot"></div>
 
-  <div className="ultra-body">
+        {
+          isPumpRunning
+            ? "RUNNING"
+            : "STOPPED"
+        }
 
-   
+      </div>
 
-    <div
-      className={
-        pumpData.status === "ON"
-          ? "ultra-fan ultra-spin"
-          : "ultra-fan"
-      }
-    >
+    </div>
 
-      <div className="fan-core"></div>
+    <div className="rpm-box">
 
-    
-      <div className="fan-blade blade1"></div>
-<div className="fan-blade blade2"></div>
-<div className="fan-blade blade3"></div>
-<div className="fan-blade blade4"></div>
-<div className="fan-blade blade5"></div>
+      <span>
+        SOLAR POWER
+      </span>
+
+      <h3>
+        {dashboard.solar?.power || 0} W
+      </h3>
 
     </div>
 
   </div>
 
-</div>
 
-  {/* RIGHT PIPE */}
-  <div
-    className={
-      pumpData.status === "ON"
-        ? "pipe-line flow-active"
-        : "pipe-line"
-    }
-  ></div>
 
-  {/* TANK */}
-  <div className="smart-tank">
+
+
+  {/* PIPELINE */}
+
+  <div className="pipeline-layout">
+
+    <div className="solar-source">
+      ☀
+    </div>
 
     <div
       className={
-        pumpData.status === "ON"
-          ? "tank-water water-running"
-          : "tank-water"
+        isPumpRunning
+          ? "pipe-line flow-active"
+          : "pipe-line"
       }
     ></div>
 
+    <div
+      className={
+        isPumpRunning
+          ? "ultra-pump ultra-running"
+          : "ultra-pump ultra-stop"
+      }
+    >
+
+      <div className="ultra-motor-head">
+
+        <div className="head-cap"></div>
+
+        <div className="motor-grills"></div>
+
+      </div>
+
+      <div className="ultra-body">
+
+        <div
+          className={
+            isPumpRunning
+              ? "ultra-fan ultra-spin"
+              : "ultra-fan"
+          }
+        >
+
+          <div className="fan-core"></div>
+
+          <div className="fan-blade blade1"></div>
+          <div className="fan-blade blade2"></div>
+          <div className="fan-blade blade3"></div>
+          <div className="fan-blade blade4"></div>
+          <div className="fan-blade blade5"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div
+      className={
+        isPumpRunning
+          ? "pipe-line flow-active"
+          : "pipe-line"
+      }
+    ></div>
+
+    <div className="smart-tank">
+
+      <div
+        className={
+          isPumpRunning
+            ? "tank-water water-running"
+            : "tank-water"
+        }
+      ></div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  {/* INFO */}
+
+  <div className="pump-info-grid">
+
+    <div className="pump-info-card">
+
+      <span>SOLAR POWER</span>
+
+      <h4
+        style={{
+          color:
+            dashboard.solar?.status === "ONLINE"
+              ? "#00ff95"
+              : "#ff3355"
+        }}
+      >
+        {dashboard.solar?.power || 0} W
+      </h4>
+
+    </div>
+
+
+
+
+
+    <div className="pump-info-card">
+
+      <span>PUMP RUNTIME</span>
+
+      <h4 style={{ color:"#00e5ff" }}>
+
+        {
+          dashboard.pumps.pump1.runtime
+            || "0h 0m 0s"
+        }
+
+      </h4>
+
+    </div>
+
+
+
+
+
+    <div className="pump-info-card">
+
+      <span>OUTPUT</span>
+
+      <h4>
+
+        {
+          isPumpRunning
+            ? "ACTIVE"
+            : "OFFLINE"
+        }
+
+      </h4>
+
+    </div>
+
+
+
+
+
+    <div className="pump-info-card">
+
+      <span>LAST UPDATE</span>
+
+      <h4>
+
+        {
+          dashboard.pumps.pump1.lastUpdated
+            || "--"
+        }
+
+      </h4>
+
+    </div>
+
+  </div>
+
+
+
+
+
+  {/* BUTTON */}
+
+  <div className="btn-row">
+
+    <button
+      className="start-btn"
+      onClick={() =>
+        controlPump("pump1", "on")
+      }
+    >
+      START
+    </button>
+
+
+
+
+
+    <button
+      className="stop-btn"
+      onClick={() =>
+        controlPump("pump1", "off")
+      }
+    >
+      STOP
+    </button>
+
   </div>
 
 </div>
 
-
-
-
-
-
-
-
-                 <div className="pump-info-grid">
-
-  
-
-
-
-  <div className="pump-info-card">
-
-    <span>SOLAR POWER</span>
-
-    <h4
-      style={{
-        color:
-          dashboard.solar?.status === "ONLINE"
-            ? "#00ff95"
-            : "#ff3355"
-      }}
-    >
-      {
-        dashboard.solar?.power || 0
-      } W
-    </h4>
-
-  </div>
-
-
-
-
-
-  <div className="pump-info-card">
-
-    <span>PUMP RUNTIME</span>
-
-    <h4
-      style={{
-        color: "#00e5ff"
-      }}
-    >
-      {
-        pumpData.runtime || "0h 0m 0s"
-      }
-    </h4>
-
-  </div>
-
-
-
-
-
-  <div className="pump-info-card">
-
-    <span>OUTPUT</span>
-
-    <h4>
-      {
-        pumpData.status === "ON"
-          ? "ACTIVE"
-          : "OFFLINE"
-      }
-    </h4>
-
-  </div>
-
-
-
-
-
-  <div className="pump-info-card">
-
-    <span>LAST UPDATE</span>
-
-    <h4>
-      {
-        pumpData.lastUpdated || "--"
-      }
-    </h4>
-
-  </div>
-
-</div>
-
-
-
-
-
-
-
-                      {/* BUTTONS */}
-
-                      <div className="btn-row">
-
-                        <button
-                          className="start-btn"
-                          onClick={() =>
-                            controlPump(key, "on")
-                          }
-                        >
-                          START
-                        </button>
-
-
-
-
-
-                        <button
-                          className="stop-btn"
-                          onClick={() =>
-                            controlPump(key, "off")
-                          }
-                        >
-                          STOP
-                        </button>
-
-                      </div>
-
-                    </div>
-
-                  )
-                )
-
-              }
+                
 
             </div>
 
