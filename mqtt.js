@@ -1,537 +1,537 @@
-const mqtt = require("mqtt");
-const fs = require("fs");
+// const mqtt = require("mqtt");
+// const fs = require("fs");
 
-const client = mqtt.connect(
-  "mqtt://broker.emqx.io:1883"
-);
+// const client = mqtt.connect(
+//   "mqtt://broker.emqx.io:1883"
+// );
 
 
 
-// ========================================
-// RUNTIME FILE
-// ========================================
+// // ========================================
+// // RUNTIME FILE
+// // ========================================
 
-const runtimeFile =
-  "./runtime.json";
+// const runtimeFile =
+//   "./runtime.json";
 
 
 
-let runtimeData =
-  JSON.parse(
-    fs.readFileSync(runtimeFile)
-  );
+// let runtimeData =
+//   JSON.parse(
+//     fs.readFileSync(runtimeFile)
+//   );
 
 
 
-// ========================================
-// SAVE RUNTIME
-// ========================================
+// // ========================================
+// // SAVE RUNTIME
+// // ========================================
 
-const saveRuntime = () => {
+// const saveRuntime = () => {
 
-  fs.writeFileSync(
-    runtimeFile,
-    JSON.stringify(
-      runtimeData,
-      null,
-      2
-    )
-  );
+//   fs.writeFileSync(
+//     runtimeFile,
+//     JSON.stringify(
+//       runtimeData,
+//       null,
+//       2
+//     )
+//   );
 
-};
+// };
 
 
 
-// ========================================
-// FORMAT TIME
-// ========================================
+// // ========================================
+// // FORMAT TIME
+// // ========================================
 
-const formatRuntime = (ms) => {
+// const formatRuntime = (ms) => {
 
-  const totalSeconds =
-    Math.floor(ms / 1000);
+//   const totalSeconds =
+//     Math.floor(ms / 1000);
 
-  const hours =
-    Math.floor(totalSeconds / 3600);
+//   const hours =
+//     Math.floor(totalSeconds / 3600);
 
-  const minutes =
-    Math.floor(
-      (totalSeconds % 3600) / 60
-    );
+//   const minutes =
+//     Math.floor(
+//       (totalSeconds % 3600) / 60
+//     );
 
-  const seconds =
-    totalSeconds % 60;
+//   const seconds =
+//     totalSeconds % 60;
 
-  return `${hours}h ${minutes}m ${seconds}s`;
+//   return `${hours}h ${minutes}m ${seconds}s`;
 
-};
+// };
 
 
 
-// ========================================
-// DASHBOARD
-// ========================================
+// // ========================================
+// // DASHBOARD
+// // ========================================
 
-let dashboard = {
+// let dashboard = {
 
-  pumps: {
+//   pumps: {
 
-    pump1: {
-      name: "MAIN PUMP",
-      status: "OFF",
-      runtime: "0h 0m 0s",
-      lastUpdated: "--"
-    }
+//     pump1: {
+//       name: "MAIN PUMP",
+//       status: "OFF",
+//       runtime: "0h 0m 0s",
+//       lastUpdated: "--"
+//     }
 
-  },
+//   },
 
 
 
-  deviceInfo: {
+//   deviceInfo: {
 
-    signal: "--",
-    operator: "--",
-    ip: "--",
-    imei: "--",
-    firmware: "--",
+//     signal: "--",
+//     operator: "--",
+//     ip: "--",
+//     imei: "--",
+//     firmware: "--",
 
-    live: "OFFLINE",
+//     live: "OFFLINE",
 
-    gprsTx: 0,
-    gprsRx: 0,
+//     gprsTx: 0,
+//     gprsRx: 0,
 
-    lived: 0,
+//     lived: 0,
 
-    mqttPackets: 0,
-    lastPacketTime: "--",
+//     mqttPackets: 0,
+//     lastPacketTime: "--",
 
-    mqttStatus: "OFFLINE"
+//     mqttStatus: "OFFLINE"
 
-  },
+//   },
 
 
 
-  telemetry: {
+//   telemetry: {
 
-    online: false,
+//     online: false,
 
-    totalPackets: 0,
+//     totalPackets: 0,
 
-    lastPID: "--"
+//     lastPID: "--"
 
-  },
+//   },
 
 
 
-  solar: {
+//   solar: {
 
-    power: 0,
+//     power: 0,
 
-    status: "OFFLINE"
+//     status: "OFFLINE"
 
-  },
+//   },
 
 
 
-  digitalInputs: {
+//   digitalInputs: {
 
-    DI0: 0,
-    DI1: 0,
-    DI2: 0,
-    DI3: 0
+//     DI0: 0,
+//     DI1: 0,
+//     DI2: 0,
+//     DI3: 0
 
-  },
+//   },
 
 
 
-  digitalOutputs: {
+//   digitalOutputs: {
 
-    DO0: 0,
-    DO1: 0,
-    DO2: 0,
-    DO3: 0
+//     DO0: 0,
+//     DO1: 0,
+//     DO2: 0,
+//     DO3: 0
 
-  },
+//   },
 
 
 
-  registers: Array.from(
-    { length: 32 },
-    () => ({
-      value: "--",
-      updated: "--"
-    })
-  )
+//   registers: Array.from(
+//     { length: 32 },
+//     () => ({
+//       value: "--",
+//       updated: "--"
+//     })
+//   )
 
-};
+// };
 
 
 
-// ========================================
-// MQTT CONNECT
-// ========================================
+// // ========================================
+// // MQTT CONNECT
+// // ========================================
 
-client.on("connect", () => {
+// client.on("connect", () => {
 
-  console.log("MQTT Connected");
+//   console.log("MQTT Connected");
 
-  dashboard.deviceInfo.mqttStatus =
-    "CONNECTED";
+//   dashboard.deviceInfo.mqttStatus =
+//     "CONNECTED";
 
-  dashboard.telemetry.online =
-    true;
+//   dashboard.telemetry.online =
+//     true;
 
-  client.subscribe(
-    "CWT00004:JSON"
-  );
+//   client.subscribe(
+//     "CWT00004:JSON"
+//   );
 
-});
+// });
 
 
 
-// ========================================
-// MQTT MESSAGE
-// ========================================
+// // ========================================
+// // MQTT MESSAGE
+// // ========================================
 
-client.on("message", (topic, message) => {
+// client.on("message", (topic, message) => {
 
-  try {
+//   try {
 
-    const data = JSON.parse(
-      message.toString()
-    );
+//     const data = JSON.parse(
+//       message.toString()
+//     );
 
-    console.log("MQTT =>", data);
+//     console.log("MQTT =>", data);
 
 
 
 
 
-    dashboard.telemetry.totalPackets++;
+//     dashboard.telemetry.totalPackets++;
 
-    dashboard.deviceInfo.mqttPackets++;
+//     dashboard.deviceInfo.mqttPackets++;
 
-    dashboard.deviceInfo.lastPacketTime =
-      new Date().toLocaleTimeString();
+//     dashboard.deviceInfo.lastPacketTime =
+//       new Date().toLocaleTimeString();
 
-    dashboard.telemetry.lastPID =
-      data.PID || "--";
+//     dashboard.telemetry.lastPID =
+//       data.PID || "--";
 
 
 
 
 
-    // ====================================
-    // DO21 / DO22
-    // ====================================
+//     // ====================================
+//     // DO21 / DO22
+//     // ====================================
 
-    if (
-      data.PID === "DO21" ||
-      data.PID === "DO22"
-    ) {
+//     if (
+//       data.PID === "DO21" ||
+//       data.PID === "DO22"
+//     ) {
 
-     // ====================================
-// DIGITAL OUTPUT UPDATE
-// ====================================
+//      // ====================================
+// // DIGITAL OUTPUT UPDATE
+// // ====================================
 
-dashboard.digitalInputs.DI0 =
-  data.DO0 ?? dashboard.digitalInputs.DI0;
+// dashboard.digitalInputs.DI0 =
+//   data.DO0 ?? dashboard.digitalInputs.DI0;
 
-dashboard.digitalInputs.DI1 =
-  data.DO1 ?? dashboard.digitalInputs.DI1;
+// dashboard.digitalInputs.DI1 =
+//   data.DO1 ?? dashboard.digitalInputs.DI1;
 
-dashboard.digitalInputs.DI2 =
-  data.DO2 ?? dashboard.digitalInputs.DI2;
+// dashboard.digitalInputs.DI2 =
+//   data.DO2 ?? dashboard.digitalInputs.DI2;
 
-dashboard.digitalInputs.DI3 =
-  data.DO3 ?? dashboard.digitalInputs.DI3;
+// dashboard.digitalInputs.DI3 =
+//   data.DO3 ?? dashboard.digitalInputs.DI3;
 
 
 
 
 
-dashboard.digitalOutputs.DO0 =
-  data.DO0 ?? dashboard.digitalOutputs.DO0;
+// dashboard.digitalOutputs.DO0 =
+//   data.DO0 ?? dashboard.digitalOutputs.DO0;
 
-dashboard.digitalOutputs.DO1 =
-  data.DO1 ?? dashboard.digitalOutputs.DO1;
+// dashboard.digitalOutputs.DO1 =
+//   data.DO1 ?? dashboard.digitalOutputs.DO1;
 
-dashboard.digitalOutputs.DO2 =
-  data.DO2 ?? dashboard.digitalOutputs.DO2;
+// dashboard.digitalOutputs.DO2 =
+//   data.DO2 ?? dashboard.digitalOutputs.DO2;
 
-dashboard.digitalOutputs.DO3 =
-  data.DO3 ?? dashboard.digitalOutputs.DO3;
+// dashboard.digitalOutputs.DO3 =
+//   data.DO3 ?? dashboard.digitalOutputs.DO3;
 
 
 
 
 
-// ====================================
-// MAIN PUMP START
-// ====================================
+// // ====================================
+// // MAIN PUMP START
+// // ====================================
 
-if (data.DO0 === 1) {
+// if (data.DO0 === 1) {
 
-  dashboard.pumps.pump1.status =
-    "ON";
+//   dashboard.pumps.pump1.status =
+//     "ON";
 
 
 
-  dashboard.digitalOutputs.DO1 = 0;
+//   dashboard.digitalOutputs.DO1 = 0;
 
 
 
-  if (
-    runtimeData.pump1.startTime === null
-  ) {
+//   if (
+//     runtimeData.pump1.startTime === null
+//   ) {
 
-    runtimeData.pump1.startTime =
-      Date.now();
+//     runtimeData.pump1.startTime =
+//       Date.now();
 
-  }
+//   }
 
-}
+// }
 
 
 
 
 
-// ====================================
-// MAIN PUMP STOP
-// ====================================
+// // ====================================
+// // MAIN PUMP STOP
+// // ====================================
 
-if (data.DO1 === 1) {
+// if (data.DO1 === 1) {
 
-  dashboard.pumps.pump1.status =
-    "OFF";
+//   dashboard.pumps.pump1.status =
+//     "OFF";
 
 
 
-  dashboard.digitalOutputs.DO0 = 0;
+//   dashboard.digitalOutputs.DO0 = 0;
 
 
 
-  if (
-    runtimeData.pump1.startTime
-  ) {
+//   if (
+//     runtimeData.pump1.startTime
+//   ) {
 
-    runtimeData.pump1.totalRuntime +=
-      Date.now() -
-      runtimeData.pump1.startTime;
+//     runtimeData.pump1.totalRuntime +=
+//       Date.now() -
+//       runtimeData.pump1.startTime;
 
-    runtimeData.pump1.startTime =
-      null;
+//     runtimeData.pump1.startTime =
+//       null;
 
-    saveRuntime();
+//     saveRuntime();
 
-  }
+//   }
 
-}
+// }
 
 
 
 
-      dashboard.pumps.pump1.lastUpdated =
-        new Date().toLocaleTimeString();
+//       dashboard.pumps.pump1.lastUpdated =
+//         new Date().toLocaleTimeString();
 
-    }
+//     }
 
 
 
 
 
-    // ====================================
-    // DC03
-    // ====================================
+//     // ====================================
+//     // DC03
+//     // ====================================
 
-    if (data.PID === "DC03") {
+//     if (data.PID === "DC03") {
 
-      dashboard.solar.power =
-        data.Power || 0;
+//       dashboard.solar.power =
+//         data.Power || 0;
 
-      dashboard.solar.status =
-        "ONLINE";
+//       dashboard.solar.status =
+//         "ONLINE";
 
-    }
+//     }
 
 
 
 
 
-    // ====================================
-    // RG80
-    // ====================================
+//     // ====================================
+//     // RG80
+//     // ====================================
 
-    if (data.PID === "RG80") {
+//     if (data.PID === "RG80") {
 
-      const ch = data.CH;
+//       const ch = data.CH;
 
-      const value =
-        data[`RGV${ch}`];
+//       const value =
+//         data[`RGV${ch}`];
 
-      if (value !== undefined) {
+//       if (value !== undefined) {
 
-        dashboard.registers[ch] = {
+//         dashboard.registers[ch] = {
 
-          value,
+//           value,
 
-          updated:
-            new Date().toLocaleTimeString()
+//           updated:
+//             new Date().toLocaleTimeString()
 
-        };
+//         };
 
-      }
+//       }
 
-    }
+//     }
 
 
 
 
 
-    // ====================================
-    // LIVE RUNTIME
-    // ====================================
+//     // ====================================
+//     // LIVE RUNTIME
+//     // ====================================
 
-    let pump1Ms =
-      runtimeData.pump1.totalRuntime;
+//     let pump1Ms =
+//       runtimeData.pump1.totalRuntime;
 
-    if (
-      runtimeData.pump1.startTime
-    ) {
+//     if (
+//       runtimeData.pump1.startTime
+//     ) {
 
-      pump1Ms +=
-        Date.now() -
-        runtimeData.pump1.startTime;
+//       pump1Ms +=
+//         Date.now() -
+//         runtimeData.pump1.startTime;
 
-    }
+//     }
 
 
 
-    dashboard.pumps.pump1.runtime =
-      formatRuntime(pump1Ms);
+//     dashboard.pumps.pump1.runtime =
+//       formatRuntime(pump1Ms);
 
 
 
 
 
-    // ====================================
-    // SOCKET
-    // ====================================
+//     // ====================================
+//     // SOCKET
+//     // ====================================
 
-    if (global.io) {
+//     if (global.io) {
 
-      global.io.emit(
-        "dashboardData",
-        dashboard
-      );
+//       global.io.emit(
+//         "dashboardData",
+//         dashboard
+//       );
 
-    }
+//     }
 
-  }
+//   }
 
-  catch (err) {
+//   catch (err) {
 
-    console.log(err);
+//     console.log(err);
 
-  }
+//   }
 
-});
+// });
 
 
 
-// ========================================
-// AUTO SAVE
-// ========================================
+// // ========================================
+// // AUTO SAVE
+// // ========================================
 
-setInterval(() => {
+// setInterval(() => {
 
-  saveRuntime();
+//   saveRuntime();
 
-}, 5000);
+// }, 5000);
 
 
 
-// ========================================
-// PUMP ON
-// ========================================
+// // ========================================
+// // PUMP ON
+// // ========================================
 
-const pump1On = () => {
+// const pump1On = () => {
 
-  // DO0 HIGH
-  client.publish(
-    "CWT00004:CWTIO-SVR",
-    "$%%IOOH0$"
-  );
+//   // DO0 HIGH
+//   client.publish(
+//     "CWT00004:CWTIO-SVR",
+//     "$%%IOOH0$"
+//   );
 
-  console.log(
-    "Pump ON Command Sent"
-  );
+//   console.log(
+//     "Pump ON Command Sent"
+//   );
 
 
 
-  // DO0 LOW RESET
-  setTimeout(() => {
+//   // DO0 LOW RESET
+//   setTimeout(() => {
 
-    client.publish(
-      "CWT00004:CWTIO-SVR",
-      "$%%IOOL0$"
-    );
+//     client.publish(
+//       "CWT00004:CWTIO-SVR",
+//       "$%%IOOL0$"
+//     );
 
-    console.log(
-      "DO0 LOW Reset Sent"
-    );
+//     console.log(
+//       "DO0 LOW Reset Sent"
+//     );
 
-  }, 1000);
+//   }, 1000);
 
-};
+// };
 
 
 
-// ========================================
-// PUMP OFF
-// ========================================
+// // ========================================
+// // PUMP OFF
+// // ========================================
 
-const pump1Off = () => {
+// const pump1Off = () => {
 
-  // DO1 HIGH
-  client.publish(
-    "CWT00004:CWTIO-SVR",
-    "$%%IOOH1$"
-  );
+//   // DO1 HIGH
+//   client.publish(
+//     "CWT00004:CWTIO-SVR",
+//     "$%%IOOH1$"
+//   );
 
-  console.log(
-    "Pump OFF Command Sent"
-  );
+//   console.log(
+//     "Pump OFF Command Sent"
+//   );
 
 
 
-  // DO1 LOW RESET
-  setTimeout(() => {
+//   // DO1 LOW RESET
+//   setTimeout(() => {
 
-    client.publish(
-      "CWT00004:CWTIO-SVR",
-      "$%%IOOL1$"
-    );
+//     client.publish(
+//       "CWT00004:CWTIO-SVR",
+//       "$%%IOOL1$"
+//     );
 
-    console.log(
-      "DO1 LOW Reset Sent"
-    );
+//     console.log(
+//       "DO1 LOW Reset Sent"
+//     );
 
-  }, 1000);
+//   }, 1000);
 
-};
+// };
 
 
 
-// ========================================
-// EXPORT
-// ========================================
+// // ========================================
+// // EXPORT
+// // ========================================
 
-module.exports = {
+// module.exports = {
 
-  dashboard,
+//   dashboard,
 
-  pump1On,
-  pump1Off
+//   pump1On,
+//   pump1Off
 
-};
+// };
