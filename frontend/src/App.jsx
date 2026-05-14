@@ -186,9 +186,7 @@ async (pumpName, action) => {
 
 
 const isPumpRunning =
-  dashboard.digitalOutputs?.DO0 === 1 &&
-  dashboard.digitalOutputs?.DO1 !== 1;
-
+  dashboard.pumps?.pump1?.status === "ON";
 
 
 
