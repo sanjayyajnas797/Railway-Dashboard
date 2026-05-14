@@ -221,121 +221,121 @@ client.on("message", (topic, message) => {
 
 
 
-    // ====================================
-    // DO21 / DO22
-    // ====================================
+   // ====================================
+// DIGITAL OUTPUT STATUS
+// ====================================
+
+if (
+  data.PID === "DO21" ||
+  data.PID === "DO22"
+) {
+
+  dashboard.digitalOutputs.DO0 =
+    data.DO0 ?? dashboard.digitalOutputs.DO0;
+
+  dashboard.digitalOutputs.DO1 =
+    data.DO1 ?? dashboard.digitalOutputs.DO1;
+
+  dashboard.digitalOutputs.DO2 =
+    data.DO2 ?? dashboard.digitalOutputs.DO2;
+
+  dashboard.digitalOutputs.DO3 =
+    data.DO3 ?? dashboard.digitalOutputs.DO3;
+
+}
+
+
+
+
+
+// ====================================
+// REAL PUMP FEEDBACK
+// DI20 / DI02
+// ====================================
+
+if (
+  data.PID === "DI20" ||
+  data.PID === "DI02"
+) {
+
+  dashboard.digitalInputs.DI0 =
+    data.DI0 ?? dashboard.digitalInputs.DI0;
+
+  dashboard.digitalInputs.DI1 =
+    data.DI1 ?? dashboard.digitalInputs.DI1;
+
+  dashboard.digitalInputs.DI2 =
+    data.DI2 ?? dashboard.digitalInputs.DI2;
+
+  dashboard.digitalInputs.DI3 =
+    data.DI3 ?? dashboard.digitalInputs.DI3;
+
+
+
+
+
+  // =========================
+  // PUMP RUNNING
+  // =========================
+
+  if (data.DI0 === 1) {
+
+    dashboard.pumps.pump1.status =
+      "ON";
+
+
 
     if (
-      data.PID === "DO21" ||
-      data.PID === "DO22"
+      runtimeData.pump1.startTime === null
     ) {
 
-     // ====================================
-// DIGITAL OUTPUT UPDATE
-// ====================================
-
-dashboard.digitalInputs.DI0 =
-  data.DO0 ?? dashboard.digitalInputs.DI0;
-
-dashboard.digitalInputs.DI1 =
-  data.DO1 ?? dashboard.digitalInputs.DI1;
-
-dashboard.digitalInputs.DI2 =
-  data.DO2 ?? dashboard.digitalInputs.DI2;
-
-dashboard.digitalInputs.DI3 =
-  data.DO3 ?? dashboard.digitalInputs.DI3;
-
-
-
-
-
-dashboard.digitalOutputs.DO0 =
-  data.DO0 ?? dashboard.digitalOutputs.DO0;
-
-dashboard.digitalOutputs.DO1 =
-  data.DO1 ?? dashboard.digitalOutputs.DO1;
-
-dashboard.digitalOutputs.DO2 =
-  data.DO2 ?? dashboard.digitalOutputs.DO2;
-
-dashboard.digitalOutputs.DO3 =
-  data.DO3 ?? dashboard.digitalOutputs.DO3;
-
-
-
-
-
-// ====================================
-// MAIN PUMP START
-// ====================================
-
-if (data.DO0 === 1) {
-
-  dashboard.pumps.pump1.status =
-    "ON";
-
-
-
-  dashboard.digitalOutputs.DO1 = 0;
-
-
-
-  if (
-    runtimeData.pump1.startTime === null
-  ) {
-
-    runtimeData.pump1.startTime =
-      Date.now();
-
-  }
-
-}
-
-
-
-
-
-// ====================================
-// MAIN PUMP STOP
-// ====================================
-
-if (data.DO1 === 1) {
-
-  dashboard.pumps.pump1.status =
-    "OFF";
-
-
-
-  dashboard.digitalOutputs.DO0 = 0;
-
-
-
-  if (
-    runtimeData.pump1.startTime
-  ) {
-
-    runtimeData.pump1.totalRuntime +=
-      Date.now() -
-      runtimeData.pump1.startTime;
-
-    runtimeData.pump1.startTime =
-      null;
-
-    saveRuntime();
-
-  }
-
-}
-
-
-
-
-      dashboard.pumps.pump1.lastUpdated =
-        new Date().toLocaleTimeString();
+      runtimeData.pump1.startTime =
+        Date.now();
 
     }
 
+  }
+
+
+
+
+
+  // =========================
+  // PUMP STOPPED
+  // =========================
+
+  if (data.DI0 === 0) {
+
+    dashboard.pumps.pump1.status =
+      "OFF";
+
+
+
+    if (
+      runtimeData.pump1.startTime
+    ) {
+
+      runtimeData.pump1.totalRuntime +=
+        Date.now() -
+        runtimeData.pump1.startTime;
+
+      runtimeData.pump1.startTime =
+        null;
+
+      saveRuntime();
+
+    }
+
+  }
+
+
+
+
+
+  dashboard.pumps.pump1.lastUpdated =
+    new Date().toLocaleTimeString();
+
+}
 
 
 
