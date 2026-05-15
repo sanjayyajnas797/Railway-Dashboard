@@ -1,12 +1,63 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
-import pumpImage from "./assets/pumped.png";
+import grid from './assets/sanj.png';
+import sun from './assets/sol.webp';
+import signal from './assets/signal.png';
+import pid from './assets/pid.webp'
 import "./App.css";
 
 const socket = io(
   "https://railway-dashboard-rdii.onrender.com"
 );
+
+const registerNames = {
+
+  RG0:  "PV1 Voltage (V)",
+  RG1:  "PV1 Current (A)",
+  RG2:  "PV1 Power (W)",
+
+  RG3:  "R Phase Voltage (V)",
+  RG4:  "R Phase Current (A)",
+  RG5:  "R Frequency (Hz)",
+
+  RG6:  "AC Output Power (W)",
+  RG7:  "Cumulative Production (kWh)",
+  RG8:  "Daily Production (kWh)",
+
+  RG9:  "Grid Status",
+
+  RG10: "Heat Sink Temp (°C)",
+
+  RG11: "Grid-Tied Runtime",
+
+  RG12: "Inverter Status",
+
+  RG13: "Serial Number",
+  RG14: "Serial Number",
+  RG15: "Serial Number",
+  RG16: "Serial Number",
+  RG17: "Serial Number",
+
+  RG18: "General Setting",
+
+  RG19: "MPPT Number",
+
+  RG20: "Inverter Type",
+
+  RG21: "Reserved",
+  RG22: "Reserved",
+  RG23: "Reserved",
+  RG24: "Reserved",
+  RG25: "Reserved",
+  RG26: "Reserved",
+  RG27: "Reserved",
+  RG28: "Reserved",
+  RG29: "Reserved",
+  RG30: "Reserved",
+  RG31: "Reserved"
+
+};
 
 export default function App() {
   const [commandPopup,setCommandPopup] =
@@ -326,45 +377,93 @@ const isPumpRunning =
 
 <div className="info-grid">
 
-  <div className="info-card">
+ <div className="info-card">
+
+  <div className="info-icon-wrap">
+    <img
+      src={signal}
+      alt=""
+      className="info-animated-icon"
+    />
+  </div>
+
+  <div className="info-content">
+
     <span>SIGNAL</span>
+
     <h2>
       {dashboard.deviceInfo.signal}
     </h2>
+
   </div>
+
+</div>
 
 
 
   {/* NEW */}
 
   <div className="info-card">
-    <span>MQTT </span>
+
+  <div className="info-icon-wrap mqtt-glow">
+    📶
+  </div>
+
+  <div className="info-content">
+
+    <span>MQTT</span>
+
     <h2>
       {
         dashboard.deviceInfo.mqttStatus || "OFFLINE"
       }
     </h2>
+
   </div>
+
+</div>
 
  
 
-  <div className="info-card">
+ <div className="info-card">
+
+  <div className="info-icon-wrap pid-glow">
+    ⚙️
+  </div>
+
+  <div className="info-content">
+
     <span>LAST PID</span>
+
     <h2>
       {
         dashboard.telemetry?.lastPID || "--"
       }
     </h2>
+
   </div>
 
-  <div className="info-card">
-    <span> PACKET</span>
+</div>
+
+ <div className="info-card">
+
+  <div className="info-icon-wrap clock-glow">
+    ⏱️
+  </div>
+
+  <div className="info-content">
+
+    <span>PACKET</span>
+
     <h2>
       {
         dashboard.deviceInfo.lastPacketTime || "--"
       }
     </h2>
+
   </div>
+
+</div>
 
 </div>
 
@@ -399,7 +498,7 @@ const isPumpRunning =
 
 
 
-            <div className="pump-grid">
+           <div className="pump-layout-wrapper">
 
              
 
@@ -448,7 +547,7 @@ const isPumpRunning =
       </span>
 
       <h3>
-        {dashboard.solar?.power || 0} W
+       {dashboard.registers?.[2]?.value || 0} W
       </h3>
 
     </div>
@@ -459,169 +558,220 @@ const isPumpRunning =
 
 
 
-  {/* PIPELINE */}
-
   <div className="pipeline-layout">
 
-    <div className="solar-source">
-      ☀
+  {/* SOLAR IMAGE */}
+
+  <div
+  className={
+    isPumpRunning
+      ? "solar-panel-box active-solar"
+      : "solar-panel-box"
+  }
+>
+
+    <img
+      src={sun}
+      alt=""
+      className={
+        isPumpRunning
+          ? "solar-panel-img solar-active"
+          : "solar-panel-img"
+      }
+    />
+
+  </div>
+
+
+
+  <div
+    className={
+      isPumpRunning
+        ? "pipe-line flow-active"
+        : "pipe-line"
+    }
+  ></div>
+
+
+
+  {/* PUMP */}
+
+  <div
+    className={
+      isPumpRunning
+        ? "ultra-pump ultra-running"
+        : "ultra-pump ultra-stop"
+    }
+  >
+
+    <div className="ultra-motor-head">
+
+      <div className="head-cap"></div>
+
+      <div className="motor-grills"></div>
+
     </div>
 
-    <div
-      className={
-        isPumpRunning
-          ? "pipe-line flow-active"
-          : "pipe-line"
-      }
-    ></div>
-
-    <div
-      className={
-        isPumpRunning
-          ? "ultra-pump ultra-running"
-          : "ultra-pump ultra-stop"
-      }
-    >
-
-      <div className="ultra-motor-head">
-
-        <div className="head-cap"></div>
-
-        <div className="motor-grills"></div>
-
-      </div>
-
-      <div className="ultra-body">
-
-        <div
-          className={
-            isPumpRunning
-              ? "ultra-fan ultra-spin"
-              : "ultra-fan"
-          }
-        >
-
-          <div className="fan-core"></div>
-
-          <div className="fan-blade blade1"></div>
-          <div className="fan-blade blade2"></div>
-          <div className="fan-blade blade3"></div>
-          <div className="fan-blade blade4"></div>
-          <div className="fan-blade blade5"></div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div
-      className={
-        isPumpRunning
-          ? "pipe-line flow-active"
-          : "pipe-line"
-      }
-    ></div>
-
-    <div className="smart-tank">
+    <div className="ultra-body">
 
       <div
         className={
           isPumpRunning
-            ? "tank-water water-running"
-            : "tank-water"
+            ? "ultra-fan ultra-spin"
+            : "ultra-fan"
         }
-      ></div>
-
-    </div>
-
-  </div>
-
-
-
-
-
-  {/* INFO */}
-
-  <div className="pump-info-grid">
-
-    <div className="pump-info-card">
-
-      <span>SOLAR POWER</span>
-
-      <h4
-        style={{
-          color:
-            dashboard.solar?.status === "ONLINE"
-              ? "#00ff95"
-              : "#ff3355"
-        }}
       >
-        {dashboard.solar?.power || 0} W
-      </h4>
 
-    </div>
+        <div className="fan-core"></div>
 
+        <div className="fan-blade blade1"></div>
+        <div className="fan-blade blade2"></div>
+        <div className="fan-blade blade3"></div>
+        <div className="fan-blade blade4"></div>
+        <div className="fan-blade blade5"></div>
 
-
-
-
-    <div className="pump-info-card">
-
-      <span>PUMP RUNTIME</span>
-
-      <h4 style={{ color:"#00e5ff" }}>
-
-        {
-          dashboard.pumps.pump1.runtime
-            || "0h 0m 0s"
-        }
-
-      </h4>
-
-    </div>
-
-
-
-
-
-    <div className="pump-info-card">
-
-      <span>OUTPUT</span>
-
-      <h4>
-
-        {
-          isPumpRunning
-            ? "ACTIVE"
-            : "OFFLINE"
-        }
-
-      </h4>
-
-    </div>
-
-
-
-
-
-    <div className="pump-info-card">
-
-      <span>LAST UPDATE</span>
-
-      <h4>
-
-        {
-          dashboard.pumps.pump1.lastUpdated
-            || "--"
-        }
-
-      </h4>
+      </div>
 
     </div>
 
   </div>
 
+
+
+  <div
+    className={
+      isPumpRunning
+        ? "pipe-line flow-active"
+        : "pipe-line"
+    }
+  ></div>
+
+
+
+  {/* GRID POWER */}
+
+ <div
+  className={
+    isPumpRunning
+      ? "grid-box active-grid"
+      : "grid-box"
+  }
+>
+
+    <img
+      src={grid}
+      alt=""
+      className={
+        isPumpRunning
+          ? "grid-img grid-active"
+          : "grid-img"
+      }
+    />
+
+      <div className="grid-energy-ring"></div>
+
+    <div className="grid-pulse"></div>
+
+  </div>
+
+</div>
+
+
+     {/* INFO */}
+
+<div className="pump-info-grid">
+
+  {/* PUMP RUNTIME */}
+
+  <div className="pump-info-card runtime-main-card">
+
+    <span>PUMP RUNTIME</span>
+
+    <h4 style={{ color:"#00e5ff" }}>
+
+      {
+        dashboard.pumps.pump1.runtime
+          || "0h 0m 0s"
+      }
+
+    </h4>
+
+  </div>
+
+
+
+  {/* MOTOR TEMP */}
+
+  <div className="pump-info-card temp-main-card">
+
+    <span>MOTOR TEMP</span>
+
+    <h4 style={{ color:"#ffb347" }}>
+
+      {
+        dashboard.registers?.[10]?.value || 0
+      } °C
+
+    </h4>
+
+  </div>
+
+
+
+  {/* INVERTER STATUS */}
+
+  <div className="pump-info-card status-main-card">
+
+    <span>INVERTER STATUS</span>
+
+    <h4
+      style={{
+        color:
+          dashboard.registers?.[12]?.value === 59
+            ? "#00ff88"
+            : "#ff3355"
+      }}
+    >
+
+      {
+        dashboard.registers?.[12]?.value === 59
+          ? "RUNNING"
+          : "STOPPED"
+      }
+
+    </h4>
+
+  </div>
+
+
+
+  {/* LAST UPDATE */}
+
+  <div className="pump-info-card update-main-card">
+
+    <span>LAST UPDATE</span>
+
+    <h4>
+
+      {
+        dashboard.pumps.pump1.lastUpdated
+          || "--"
+      }
+
+    </h4>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+  
+  
 
 
 
@@ -655,7 +805,50 @@ const isPumpRunning =
   </div>
 
 </div>
+          <div className="digital-floating-panel">
 
+  <div className="digital-floating-title">
+    📡 DIGITAL INPUT STATUS
+  </div>
+
+  <div className="digital-grid">
+
+    {
+      Object.entries(
+        dashboard.digitalInputs
+      ).map(
+        ([key, value]) => (
+
+          <div
+            key={key}
+            className={
+              value === 1
+                ? "digital-box green-box"
+                : "digital-box red-box"
+            }
+          >
+
+            <span>{key}</span>
+
+            <h2>{value}</h2>
+
+            <p>
+              {
+                value === 1
+                  ? "ACTIVE"
+                  : "INACTIVE"
+              }
+            </p>
+
+          </div>
+
+        )
+      )
+    }
+
+  </div>
+
+</div>
                 
 
             </div>
@@ -670,67 +863,7 @@ const isPumpRunning =
 
 
 
-          {/* DIGITAL INPUT */}
-
-          <div className="section-card">
-
-            <div className="title-row">
-
-  <div className="section-title">
-    📡 DIGITAL INPUT STATUS
-  </div>
-
-  <button className="view-btn">
-    View All
-  </button>
-
-</div>
-
-
-
-
-            <div className="digital-grid">
-
-              {
-                Object.entries(
-                  dashboard.digitalInputs
-                ).map(
-                  ([key, value]) => (
-
-                    <div
-                      key={key}
-                      className={
-                        value === 1
-                          ? "digital-box green-box"
-                          : "digital-box red-box"
-                      }
-                    >
-
-                      <span>
-                        {key}
-                      </span>
-
-                      <h2>
-                        {value}
-                      </h2>
-
-                      <p>
-                        {
-                          value === 1
-                            ? "ACTIVE"
-                            : "INACTIVE"
-                        }
-                      </p>
-
-                    </div>
-
-                  )
-                )
-              }
-
-            </div>
-
-          </div>
+        
 
         </div>
 
@@ -758,35 +891,91 @@ const isPumpRunning =
 </div>
   <div className="register-grid">
 
-    {
-      dashboard.registers.map(
-        (item, index) => (
+   {
+  dashboard.registers
+    .slice(0, 21)
+    .map(
+      (item, index) => (
 
-          <div
-            key={index}
-            className="register-box"
-          >
+        <div
+          key={index}
+          className={`
+            register-box
 
-            <span>
-              RG{index}
-            </span>
+            ${index === 0 || index === 3
+              ? "voltage-card" : ""}
 
-            <h2>
-              {item.value}
-            </h2>
+            ${index === 1 || index === 4
+              ? "current-card" : ""}
 
-            <p className="rg-update">
-              {
-                item.updated || "--"
-              }
-            </p>
+            ${index === 2 || index === 6 || index === 7 || index === 8
+              ? "power-card" : ""}
 
-          </div>
+            ${index === 10
+              ? "temp-card" : ""}
 
-        )
+            ${index === 9 || index === 12
+              ? "status-card" : ""}
+
+            ${index === 11
+              ? "runtime-card" : ""}
+          `}
+        >
+
+          <span>
+            {
+              registerNames[`RG${index}`]
+              || `RG${index}`
+            }
+          </span>
+
+          <h2 className="register-value">
+
+{
+  index === 0 || index === 3
+    ? `${(Number(item.value || 0) / 1000).toFixed(1)} kV`
+
+  : index === 1 || index === 4
+    ? `${Number(item.value || 0)} A`
+
+  : index === 2 || index === 6
+    ? `${(Number(item.value || 0) / 1000).toFixed(1)} kW`
+
+  : index === 5
+    ? `${(Number(item.value || 0) / 1000).toFixed(1)} kHz`
+
+  : index === 10
+    ? `${(Number(item.value || 0) / 10).toFixed(1)} °C`
+
+  : index === 11
+    ? `${Number(item.value || 0)} Hrs`
+
+  : index === 9
+    ? item.value === 194
+      ? "CONNECTED"
+      : "DISCONNECTED"
+
+  : index === 12
+    ? item.value === 59
+      ? "RUNNING"
+      : "STOPPED"
+
+  : Number(item.value || 0).toLocaleString()
+}
+
+</h2>
+
+          <p className="rg-update">
+            {
+              item.updated || "--"
+            }
+          </p>
+
+        </div>
+
       )
-    }
-
+    )
+}
 </div>
 
       </div>
