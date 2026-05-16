@@ -488,9 +488,7 @@ const isPumpRunning =
     ⚡ PUMP CONTROL CENTER
   </div>
 
-  <button className="view-btn">
-    View All
-  </button>
+  
 
 </div>
 
@@ -884,9 +882,7 @@ const isPumpRunning =
     🌞 SOLAR SENSOR REGISTERS
   </div>
 
-  <button className="view-btn">
-    View All
-  </button>
+ 
 
 </div>
   <div className="register-grid">
