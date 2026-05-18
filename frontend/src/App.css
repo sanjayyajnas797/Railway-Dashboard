@@ -4945,3 +4945,22 @@ FINAL PUMP TOP POSITION FIX
 }
 
 
+/* MOBILE PUMP TOP ALIGN FIX */
+
+@media(max-width:768px){
+
+  .ultra-pump{
+
+    position:relative !important;
+
+    top:-70px !important;
+  }
+
+  .main-energy-line{
+
+    position:relative !important;
+
+    top:-70px !important;
+  }
+
+}
