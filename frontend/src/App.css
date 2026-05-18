@@ -4242,3 +4242,292 @@ PASSWORD AUTH POPUP
 
   color:#001b10;
 }
+
+
+/* =========================================
+ULTIMATE MOBILE PERFECT FIX
+========================================= */
+
+@media(max-width:768px){
+
+  .main-container{
+    padding:8px 8px 90px !important;
+  }
+
+  .section-card{
+    padding:10px !important;
+    border-radius:18px !important;
+  }
+
+  /* MAIN PUMP CARD */
+
+  .railway-pump-card{
+
+    width:100% !important;
+
+    min-width:100% !important;
+    max-width:100% !important;
+
+    padding:12px !important;
+
+    border-radius:20px !important;
+
+    overflow:hidden;
+  }
+
+  /* TITLE */
+
+  .pump-top-row{
+
+    align-items:flex-start !important;
+
+    margin-bottom:10px !important;
+  }
+
+  .pump-title{
+
+    font-size:26px !important;
+
+    line-height:1 !important;
+
+    letter-spacing:.5px;
+  }
+
+  .live-status{
+
+    margin-top:8px !important;
+
+    padding:5px 10px !important;
+
+    font-size:8px !important;
+  }
+
+  .rpm-box span{
+
+    font-size:7px !important;
+  }
+
+  .rpm-box h3{
+
+    font-size:14px !important;
+  }
+
+  /* ENERGY LAYOUT */
+
+  .advanced-energy-layout{
+
+    display:grid !important;
+
+    grid-template-columns:
+    1fr 70px 1fr !important;
+
+    align-items:center !important;
+
+    justify-items:center !important;
+
+    gap:8px !important;
+
+    margin-top:18px !important;
+    margin-bottom:18px !important;
+  }
+
+  /* SOLAR */
+
+  .solar-panel-box{
+
+    width:88px !important;
+    height:88px !important;
+
+    border-radius:20px !important;
+  }
+
+  .solar-panel-img{
+
+    width:64px !important;
+    height:64px !important;
+  }
+
+  /* GRID */
+
+  .grid-box{
+
+    width:88px !important;
+    height:88px !important;
+
+    border-radius:20px !important;
+  }
+
+  .grid-img{
+
+    width:62px !important;
+    height:62px !important;
+  }
+
+  /* PUMP */
+
+  .ultra-pump{
+
+    width:70px !important;
+    height:120px !important;
+
+    top:0 !important;
+  }
+
+  .ultra-motor-head{
+
+    width:34px !important;
+    height:46px !important;
+  }
+
+  .ultra-body{
+
+    width:42px !important;
+    height:78px !important;
+  }
+
+  .ultra-fan{
+
+    width:48px !important;
+    height:48px !important;
+  }
+
+  .fan-blade{
+
+    width:7px !important;
+    height:16px !important;
+
+    margin-left:-3.5px !important;
+    margin-top:-16px !important;
+
+    transform-origin:center 16px !important;
+  }
+
+  /* PIPE */
+
+  .main-energy-line{
+
+    width:28px !important;
+    height:5px !important;
+
+    top:0 !important;
+  }
+
+  /* REGISTER BOX */
+
+  .energy-register-box{
+
+    width:88px !important;
+
+    padding:8px !important;
+
+    border-radius:14px !important;
+
+    gap:6px !important;
+  }
+
+  .energy-register-item{
+
+    padding-bottom:6px !important;
+  }
+
+  .energy-register-item span{
+
+    font-size:5px !important;
+
+    letter-spacing:.5px !important;
+  }
+
+  .energy-register-item h4{
+
+    font-size:11px !important;
+
+    margin-top:3px !important;
+  }
+
+  /* PUMP INFO */
+
+  .pump-info-grid{
+
+    grid-template-columns:
+    repeat(2,1fr) !important;
+
+    gap:8px !important;
+
+    margin-top:14px !important;
+  }
+
+  .pump-info-card{
+
+    min-height:62px !important;
+
+    padding:10px !important;
+
+    border-radius:12px !important;
+  }
+
+  .pump-info-card span{
+
+    font-size:6px !important;
+  }
+
+  .pump-info-card h4{
+
+    font-size:11px !important;
+
+    margin-top:5px !important;
+  }
+
+  /* BUTTON */
+
+  .btn-row{
+
+    margin-top:14px !important;
+
+    gap:8px !important;
+  }
+
+  .start-btn,
+  .stop-btn{
+
+    height:42px !important;
+
+    font-size:13px !important;
+
+    border-radius:12px !important;
+  }
+
+  /* HEADER */
+
+  .top-header{
+
+    height:74px !important;
+
+    padding:8px 10px !important;
+  }
+
+  .top-header h1{
+
+    font-size:9px !important;
+
+    max-width:140px !important;
+  }
+
+  .top-header p{
+
+    font-size:6px !important;
+  }
+
+  .mobile-logo{
+
+    width:34px !important;
+    height:34px !important;
+  }
+
+  .live-box{
+
+    padding:5px 9px !important;
+
+    font-size:6px !important;
+  }
+
+}
