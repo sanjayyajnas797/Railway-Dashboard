@@ -4929,3 +4929,17 @@ FINAL MOBILE ENERGY ALIGNMENT FIX
   }
 
 }
+
+/* =========================================
+FINAL PUMP TOP POSITION FIX
+========================================= */
+
+.ultra-pump{
+  position:relative !important;
+  top:-108px !important;
+}
+
+.main-energy-line{
+  position:relative !important;
+  top:-108px !important;
+}
