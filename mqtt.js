@@ -7,64 +7,12 @@ const client = mqtt.connect(
 
 
 
-// ========================================
-// RUNTIME FILE
-// ========================================
-
-const runtimeFile =
-  "./runtime.json";
 
 
 
-let runtimeData =
-  JSON.parse(
-    fs.readFileSync(runtimeFile)
-  );
 
 
 
-// ========================================
-// SAVE RUNTIME
-// ========================================
-
-const saveRuntime = () => {
-
-  fs.writeFileSync(
-    runtimeFile,
-    JSON.stringify(
-      runtimeData,
-      null,
-      2
-    )
-  );
-
-};
-
-
-
-// ========================================
-// FORMAT TIME
-// ========================================
-
-const formatRuntime = (ms) => {
-
-  const totalSeconds =
-    Math.floor(ms / 1000);
-
-  const hours =
-    Math.floor(totalSeconds / 3600);
-
-  const minutes =
-    Math.floor(
-      (totalSeconds % 3600) / 60
-    );
-
-  const seconds =
-    totalSeconds % 60;
-
-  return `${hours}h ${minutes}m ${seconds}s`;
-
-};
 
 
 
@@ -322,7 +270,7 @@ if (
       runtimeData.pump1.startTime =
         null;
 
-      saveRuntime();
+     
 
     }
 
@@ -438,16 +386,6 @@ if (
 });
 
 
-
-// ========================================
-// AUTO SAVE
-// ========================================
-
-setInterval(() => {
-
-  saveRuntime();
-
-}, 5000);
 
 
 

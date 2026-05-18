@@ -40,34 +40,9 @@ body{
 }
 
 /* SIDEBAR */
-
-.sidebar{
-
-  width:92px;
-
-  background:
-  linear-gradient(
-    180deg,
-    rgba(2,12,26,.98),
-    rgba(3,20,40,.98)
-  );
-
-  border-right:
-  1px solid rgba(255,255,255,.06);
-
-  padding:10px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
-  position:sticky;
-  top:0;
-
-  height:100vh;
-
-  z-index:999;
-}
+  .sidebar{
+    display:none !important;
+  }
 
 .logo-box{
 
@@ -824,7 +799,7 @@ body{
 .pump-info-grid{
 
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(6,1fr);
 
   gap:10px;
 
@@ -1066,6 +1041,11 @@ RESPONSIVE
 }
 
 @media(max-width:768px){
+
+   .ultra-pump{
+
+    top:-94px;
+  }
 
   body{
     overflow-x:hidden;
@@ -3650,4 +3630,615 @@ NEXT LEVEL RECTANGLE TELEMETRY CARDS
     font-weight:800 !important;
   }
 
+}
+
+
+.power-main-card{
+  border-left:3px solid #00ff88;
+}
+
+.freq-main-card{
+  border-left:3px solid #00e5ff;
+}
+
+
+.solar-live-data,
+.grid-live-data{
+
+  display:flex;
+  flex-direction:column;
+
+  gap:4px;
+
+  margin-top:8px;
+
+  align-items:center;
+}
+
+.solar-live-data span,
+.grid-live-data span{
+
+  font-size:10px;
+
+  font-weight:700;
+
+  color:#00e5ff;
+
+  font-family:'Orbitron',sans-serif;
+
+  text-shadow:
+  0 0 10px rgba(0,255,255,.5);
+}
+
+
+
+
+/* =========================================
+ADVANCED ENERGY LAYOUT
+========================================= */
+
+.advanced-energy-layout{
+
+  display:flex;
+  align-items:center; /* IMPORTANT */
+
+  justify-content:center;
+
+  gap:40px;
+
+  margin-top:30px;
+  margin-bottom:30px;
+}
+
+.ultra-pump{
+
+  position:relative;
+
+  top:28px;   /* pump down varum */
+}
+
+/* SIDE */
+
+.energy-side{
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  gap:18px;
+}
+
+
+
+/* SOLAR BIG */
+
+.solar-panel-box{
+
+  width:180px !important;
+  height:180px !important;
+
+  border-radius:40px !important;
+}
+
+.solar-panel-img{
+
+  width:140px !important;
+  height:140px !important;
+}
+
+
+
+/* GRID BIG */
+
+.grid-box{
+
+  width:180px !important;
+  height:180px !important;
+
+  border-radius:40px !important;
+}
+
+.grid-img{
+
+  width:130px !important;
+  height:130px !important;
+}
+
+
+
+/* PUMP BIG */
+.ultra-pump{
+
+  width:170px !important;
+  height:280px !important;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  position:relative;
+}
+
+
+.ultra-motor-head{
+
+  width:76px !important;
+  height:100px !important;
+}
+
+.ultra-body{
+
+  width:90px !important;
+  height:180px !important;
+}
+
+.ultra-fan{
+
+  width:100px !important;
+  height:100px !important;
+}
+
+
+
+/* PIPE */
+
+.main-energy-line{
+
+  width:140px;
+  height:12px;
+
+  border-radius:20px;
+
+  background:
+  linear-gradient(
+    90deg,
+    #173250,
+    #24507c
+  );
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+
+
+/* REGISTER BOX */
+
+.energy-register-box{
+
+  width:180px;
+
+  padding:16px;
+
+  border-radius:24px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(5,18,38,.95),
+    rgba(8,24,48,.98)
+  );
+
+  border:
+  1px solid rgba(255,255,255,.06);
+
+  display:flex;
+  flex-direction:column;
+
+  gap:14px;
+}
+
+
+
+/* ITEMS */
+
+.energy-register-item{
+
+  padding-bottom:12px;
+
+  border-bottom:
+  1px solid rgba(255,255,255,.06);
+}
+
+.energy-register-item:last-child{
+  border-bottom:none;
+  padding-bottom:0;
+}
+
+.energy-register-item span{
+
+  font-size:10px;
+
+  letter-spacing:1px;
+
+  color:#7ea8d7;
+
+  font-weight:700;
+}
+
+.energy-register-item h4{
+
+  margin-top:6px;
+
+  font-size:22px;
+
+  font-family:'Orbitron',sans-serif;
+
+  color:#00e5ff;
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .ultra-pump{
+
+    top:12px;
+  }
+
+  .advanced-energy-layout{
+
+    gap:14px;
+
+    margin-top:20px;
+    margin-bottom:20px;
+  }
+
+  .solar-panel-box{
+
+    width:95px !important;
+    height:95px !important;
+
+    border-radius:22px !important;
+  }
+
+  .solar-panel-img{
+
+    width:70px !important;
+    height:70px !important;
+  }
+
+  .grid-box{
+
+    width:95px !important;
+    height:95px !important;
+
+    border-radius:22px !important;
+  }
+
+  .grid-img{
+
+    width:70px !important;
+    height:70px !important;
+  }
+
+  .ultra-pump{
+
+    width:82px !important;
+    height:150px !important;
+  }
+
+  .ultra-motor-head{
+
+    width:40px !important;
+    height:54px !important;
+  }
+
+  .ultra-body{
+
+    width:48px !important;
+    height:96px !important;
+  }
+
+  .ultra-fan{
+
+    width:56px !important;
+    height:56px !important;
+  }
+
+  .main-energy-line{
+
+    width:30px;
+    height:6px;
+  }
+
+  .energy-register-box{
+
+    width:95px;
+
+    padding:8px;
+
+    border-radius:16px;
+
+    gap:8px;
+  }
+
+  .energy-register-item{
+
+    padding-bottom:6px;
+  }
+
+  .energy-register-item span{
+
+    font-size:5px;
+  }
+
+  .energy-register-item h4{
+
+    font-size:10px;
+
+    margin-top:3px;
+  }
+
+}
+
+.ultra-pump{
+
+  position:relative;
+
+  top:-108px;   /* pump mela pogum */
+}
+
+.main-energy-line{
+
+  position:relative;
+
+  top:-108px;
+}
+
+@media(max-width:768px){
+
+  .main-energy-line{
+
+    top:-12px;
+  }
+
+}
+
+.register-section{
+
+  margin-top:18px;
+
+  min-height:auto !important;
+}
+
+
+@media (min-width: 769px){
+
+  .sidebar{
+    display:none !important;
+  }
+
+  .main-container{
+
+    margin-left:0 !important;
+
+    margin-top:88px !important;
+
+    width:100% !important;
+
+    padding:18px !important;
+  }
+
+  .top-header{
+
+    position:fixed;
+
+    top:0;
+    left:0 !important;
+    right:0;
+
+    height:88px;
+
+    padding:0 24px !important;
+
+    backdrop-filter:blur(14px);
+
+    z-index:999999;
+  }
+
+  .top-grid{
+
+    display:block !important;
+
+    width:100%;
+
+    gap:18px;
+  }
+
+  .section-card{
+
+    width:100% !important;
+
+    min-height:auto !important;
+
+    padding:18px;
+
+    border-radius:26px;
+  }
+
+  .pump-layout-wrapper{
+
+    display:flex;
+
+    align-items:stretch;
+
+    gap:22px;
+
+    width:100%;
+  }
+
+  .railway-pump-card{
+
+    flex:1;
+
+    max-width:none !important;
+
+    width:100% !important;
+
+    min-height:640px;
+
+    padding:20px 22px;
+
+    border-radius:26px;
+  }
+
+  .digital-floating-panel{
+
+    width:320px;
+
+    min-width:320px;
+
+    border-radius:26px;
+  }
+}
+
+
+/* ===================================
+PASSWORD AUTH POPUP
+=================================== */
+.password-popup-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+  rgba(0,0,0,.72);
+
+  backdrop-filter:blur(10px);
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:flex-start;
+
+  padding-top:140px;
+
+  z-index:9999999;
+}
+
+.password-popup-box{
+
+  width:380px;
+
+  padding:28px;
+
+  border-radius:24px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(5,18,38,.98),
+    rgba(2,12,28,.98)
+  );
+
+  border:
+  1px solid rgba(0,217,255,.25);
+
+  box-shadow:
+  0 0 40px rgba(0,0,0,.45),
+  0 0 30px rgba(0,217,255,.08);
+
+  text-align:center;
+}
+
+.password-popup-box h2{
+
+  font-size:24px;
+
+  margin-bottom:8px;
+
+  color:#00e5ff;
+
+  font-family:'Orbitron',sans-serif;
+}
+
+.password-popup-box p{
+
+  color:#7ea8d7;
+
+  margin-bottom:20px;
+
+  font-size:13px;
+}
+
+.password-popup-box input{
+
+  width:100%;
+
+  height:52px;
+
+  border:none;
+
+  outline:none;
+
+  border-radius:14px;
+
+  padding:0 16px;
+
+  background:
+  rgba(0,0,0,.35);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  color:#fff;
+
+  font-size:16px;
+
+  margin-bottom:20px;
+}
+
+.password-popup-btns{
+
+  display:flex;
+
+  gap:12px;
+}
+
+.popup-cancel-btn,
+.popup-confirm-btn{
+
+  flex:1;
+
+  height:48px;
+
+  border:none;
+
+  border-radius:14px;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+.popup-cancel-btn{
+
+  background:
+  linear-gradient(
+    135deg,
+    #2b3442,
+    #1b2330
+  );
+
+  color:#fff;
+}
+
+.popup-confirm-btn{
+
+  background:
+  linear-gradient(
+    135deg,
+    #00c853,
+    #00ff88
+  );
+
+  color:#001b10;
 }
