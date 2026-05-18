@@ -8,7 +8,16 @@ import pid from './assets/pid.webp'
 import "./App.css";
 
 const socket = io(
-  "https://railway-dashboard-rdii.onrender.com"
+  "https://railway-dashboard-rdii.onrender.com",
+  {
+    transports:["websocket"],
+
+    reconnection:true,
+
+    reconnectionAttempts:999999,
+
+    reconnectionDelay:1000
+  }
 );
 
 const registerNames = {
@@ -182,36 +191,65 @@ useState(null);
 
 
 
-
-
-
-
-
-
   useEffect(() => {
 
-    getDashboard();
+  // initial dashboard
+  getDashboard();
 
-    socket.on(
-      "dashboardData",
-      (data) => {
+  // socket connected
+  socket.on("connect", () => {
 
-        setDashboard({ ...data });
-
-      }
+    console.log(
+      "Socket Connected:",
+      socket.id
     );
 
+  });
+
+  // realtime data
+  socket.on(
+    "dashboardData",
+    (data) => {
+
+      console.log(
+        "Realtime MQTT Data:",
+        data
+      );
+
+      setDashboard(data);
+
+    }
+  );
+
+  // disconnected
+  socket.on(
+    "disconnect",
+    () => {
+
+      console.log(
+        "Socket Disconnected"
+      );
+
+    }
+  );
+
+  return () => {
+
+    socket.off("connect");
+
+    socket.off("dashboardData");
+
+    socket.off("disconnect");
+
+  };
+
+}, []);
 
 
 
 
-    return () => {
 
-      socket.off("dashboardData");
 
-    };
-
-  }, []);
 
 
 

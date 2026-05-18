@@ -8,8 +8,6 @@ const http = require("http");
 
 const { Server } = require("socket.io");
 
-
-
 const port = 5000;
 
 
@@ -44,7 +42,13 @@ const io = new Server(server, {
 
 global.io = io;
 
+io.on("connection",(socket)=>{
 
+  console.log(
+    "Frontend Connected"
+  );
+
+});
 
 
 
@@ -59,22 +63,6 @@ require("./mqtt");
 const route = require("./router");
 
 app.use("/api", route);
-
-
-
-
-
-// SOCKET CONNECT
-
-io.on("connection", (socket) => {
-
-  console.log(
-    "Frontend Connected"
-  );
-
-});
-
-
 
 
 
