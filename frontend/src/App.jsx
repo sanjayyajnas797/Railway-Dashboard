@@ -1122,9 +1122,29 @@ VFD STATUS
           return(
 
             <div
-              key={actualIndex}
-              className="register-box"
-            >
+  key={actualIndex}
+  className={`
+    register-box
+
+    ${actualIndex === 21 || actualIndex === 22 || actualIndex === 25
+      ? "voltage-card" : ""}
+
+    ${actualIndex === 23
+      ? "current-card" : ""}
+
+    ${actualIndex === 24 || actualIndex === 26 || actualIndex === 27
+      ? "power-card" : ""}
+
+    ${actualIndex === 31
+      ? "temp-card" : ""}
+
+    ${actualIndex === 28
+      ? "status-card" : ""}
+
+    ${actualIndex === 30
+      ? "runtime-card" : ""}
+  `}
+>
 
               <span>
                 {

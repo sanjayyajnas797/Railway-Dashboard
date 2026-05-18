@@ -233,14 +233,7 @@ if (
 
 
 
-    if (
-      runtimeData.pump1.startTime === null
-    ) {
-
-      runtimeData.pump1.startTime =
-        Date.now();
-
-    }
+    
 
   }
 
@@ -259,20 +252,7 @@ if (
 
 
 
-    if (
-      runtimeData.pump1.startTime
-    ) {
-
-      runtimeData.pump1.totalRuntime +=
-        Date.now() -
-        runtimeData.pump1.startTime;
-
-      runtimeData.pump1.startTime =
-        null;
-
-     
-
-    }
+   
 
   }
 
@@ -309,55 +289,43 @@ if (
     // ====================================
     // RG80
     // ====================================
+if (data.PID === "RG80") {
 
-    if (data.PID === "RG80") {
+  const ch = data.CH;
 
-      const ch = data.CH;
+  const value =
+    data[`RGV${ch}`];
 
-      const value =
-        data[`RGV${ch}`];
+  if (value !== undefined) {
 
-      if (value !== undefined) {
+    dashboard.registers[ch] = {
 
-        dashboard.registers[ch] = {
+      value,
 
-          value,
+      updated:
+        new Date().toLocaleTimeString()
 
-          updated:
-            new Date().toLocaleTimeString()
-
-        };
-
-      }
-
-    }
+    };
 
 
 
+    // RUNTIME REGISTER
 
+    if (ch === 30) {
 
-    // ====================================
-    // LIVE RUNTIME
-    // ====================================
-
-    let pump1Ms =
-      runtimeData.pump1.totalRuntime;
-
-    if (
-      runtimeData.pump1.startTime
-    ) {
-
-      pump1Ms +=
-        Date.now() -
-        runtimeData.pump1.startTime;
+      dashboard.pumps.pump1.runtime =
+        value;
 
     }
 
+  }
+
+}
 
 
-    dashboard.pumps.pump1.runtime =
-      formatRuntime(pump1Ms);
 
+
+    
 
 
 
