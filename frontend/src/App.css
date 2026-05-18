@@ -4341,7 +4341,7 @@ ULTIMATE MOBILE PERFECT FIX
     width:70px !important;
     height:120px !important;
     
-    top:0 !important;
+    
   }
 
   .ultra-motor-head{
@@ -4380,7 +4380,7 @@ ULTIMATE MOBILE PERFECT FIX
     width:28px !important;
     height:5px !important;
 
-    top:0 !important;
+    
   }
 
   /* REGISTER BOX */
@@ -4942,4 +4942,47 @@ FINAL PUMP TOP POSITION FIX
 .main-energy-line{
   position:relative !important;
   top:-108px !important;
+}
+
+
+/* =========================================
+FINAL MOBILE PUMP PERFECT ALIGNMENT
+========================================= */
+
+@media(max-width:768px){
+
+  .advanced-energy-layout{
+
+    display:grid !important;
+
+    grid-template-columns:
+    1fr 70px 1fr !important;
+
+    align-items:start !important;
+
+    justify-items:center !important;
+
+    gap:8px !important;
+
+    margin-top:10px !important;
+    margin-bottom:18px !important;
+  }
+
+  .ultra-pump{
+
+    width:70px !important;
+    height:120px !important;
+
+    position:relative !important;
+
+    top:-52px !important;
+  }
+
+  .main-energy-line{
+
+    position:relative !important;
+
+    top:-52px !important;
+  }
+
 }
