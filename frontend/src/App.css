@@ -3694,7 +3694,11 @@ ADVANCED ENERGY LAYOUT
 
   position:relative;
 
-  top:28px;   /* pump down varum */
+  top:-108px;   /* pump down varum */
+}
+
+.main-energy-line{
+  top:-108px;
 }
 
 /* SIDE */
@@ -3975,19 +3979,7 @@ ADVANCED ENERGY LAYOUT
 
 }
 
-.ultra-pump{
 
-  position:relative;
-
-  top:-108px;   /* pump mela pogum */
-}
-
-.main-energy-line{
-
-  position:relative;
-
-  top:-108px;
-}
 
 @media(max-width:768px){
 
@@ -4369,7 +4361,7 @@ ULTIMATE MOBILE PERFECT FIX
 
     width:70px !important;
     height:120px !important;
-
+    
     top:0 !important;
   }
 
@@ -4528,6 +4520,271 @@ ULTIMATE MOBILE PERFECT FIX
     padding:5px 9px !important;
 
     font-size:6px !important;
+  }
+
+}
+
+
+/* =========================================
+FINAL PROFESSIONAL MOBILE FIX
+========================================= */
+
+@media(max-width:768px){
+
+  /* MAIN CARD */
+
+  .railway-pump-card{
+
+    width:100% !important;
+    min-width:100% !important;
+    max-width:100% !important;
+
+    padding:14px !important;
+
+    overflow:hidden !important;
+
+    border-radius:20px !important;
+  }
+
+  /* TITLE */
+
+  .pump-top-row{
+
+    display:flex !important;
+
+    justify-content:space-between !important;
+
+    align-items:flex-start !important;
+
+    gap:10px !important;
+
+    margin-bottom:14px !important;
+  }
+
+  .pump-title{
+
+    font-size:22px !important;
+
+    line-height:1 !important;
+  }
+
+  .rpm-box{
+
+    text-align:right !important;
+  }
+
+  .rpm-box h3{
+
+    font-size:14px !important;
+  }
+
+  /* ===================================
+  PERFECT ENERGY ALIGNMENT
+  =================================== */
+
+  .advanced-energy-layout{
+
+    display:grid !important;
+
+    grid-template-columns:
+    1fr 70px 1fr !important;
+
+    align-items:center !important;
+
+    justify-items:center !important;
+
+    gap:12px !important;
+
+    width:100% !important;
+
+    margin-top:14px !important;
+    margin-bottom:18px !important;
+  }
+
+  .energy-side{
+
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    align-items:center !important;
+
+    gap:10px !important;
+  }
+
+  /* SOLAR */
+
+  .solar-panel-box{
+
+    width:86px !important;
+    height:86px !important;
+
+    border-radius:20px !important;
+  }
+
+  .solar-panel-img{
+
+    width:60px !important;
+    height:60px !important;
+  }
+
+  /* GRID */
+
+  .grid-box{
+
+    width:86px !important;
+    height:86px !important;
+
+    border-radius:20px !important;
+  }
+
+  .grid-img{
+
+    width:58px !important;
+    height:58px !important;
+  }
+
+  /* PUMP CENTER */
+
+  .ultra-pump{
+
+    position:relative !important;
+
+    top:0 !important;
+
+    width:70px !important;
+    height:130px !important;
+
+    display:flex !important;
+
+    justify-content:center !important;
+    align-items:center !important;
+  }
+
+  .ultra-motor-head{
+
+    width:34px !important;
+    height:46px !important;
+  }
+
+  .ultra-body{
+
+    width:42px !important;
+    height:82px !important;
+  }
+
+  .ultra-fan{
+
+    width:48px !important;
+    height:48px !important;
+  }
+
+  .fan-blade{
+
+    width:7px !important;
+    height:16px !important;
+
+    margin-left:-3.5px !important;
+    margin-top:-16px !important;
+
+    transform-origin:center 16px !important;
+  }
+
+  /* PIPE */
+
+  .main-energy-line{
+
+    width:26px !important;
+    height:5px !important;
+
+    top:0 !important;
+  }
+
+  /* DATA BOX */
+
+  .energy-register-box{
+
+    width:86px !important;
+
+    padding:8px !important;
+
+    border-radius:14px !important;
+
+    gap:6px !important;
+  }
+
+  .energy-register-item{
+
+    padding-bottom:5px !important;
+  }
+
+  .energy-register-item span{
+
+    font-size:5px !important;
+  }
+
+  .energy-register-item h4{
+
+    font-size:10px !important;
+
+    margin-top:2px !important;
+  }
+
+  /* PUMP INFO */
+
+  .pump-info-grid{
+
+    grid-template-columns:
+    repeat(2,1fr) !important;
+
+    gap:8px !important;
+  }
+
+  .pump-info-card{
+
+    min-height:64px !important;
+
+    padding:10px !important;
+
+    border-radius:12px !important;
+  }
+
+  .pump-info-card span{
+
+    font-size:6px !important;
+  }
+
+  .pump-info-card h4{
+
+    font-size:11px !important;
+
+    margin-top:5px !important;
+  }
+
+  /* BUTTON */
+
+  .btn-row{
+
+    display:grid !important;
+
+    grid-template-columns:
+    1fr 1fr !important;
+
+    gap:8px !important;
+
+    margin-top:14px !important;
+  }
+
+  .start-btn,
+  .stop-btn{
+
+    width:100% !important;
+
+    height:42px !important;
+
+    font-size:13px !important;
+
+    border-radius:12px !important;
   }
 
 }
